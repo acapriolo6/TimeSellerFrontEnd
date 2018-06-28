@@ -1,0 +1,16 @@
+
+  <!-- Three columns of text below the carousel -->
+  <div class="row" id="principalRow">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" id="copyCol" *ngFor="let card of listaBanner; let i = index;">
+      <div class="card">
+        <div class="row">
+          <img class="card-img-top img-fluid col-6" [src]="card.url" alt="Card image cap">
+          <div class="card-body col-6">
+            <h5 class="card-title">Esselunga</h5>
+            <p class="card-text">{{card.description}}</p>
+            <a href="#" class="btn btn-primary">Bids</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
