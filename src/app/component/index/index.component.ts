@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../../service/api.service';
-import {Banner} from '../../banner';
+import {Banner} from '../../interface/banner';
 
 @Component({
   selector: 'app-index',

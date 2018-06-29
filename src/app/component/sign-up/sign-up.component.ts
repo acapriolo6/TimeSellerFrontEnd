@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UserDetails} from '../../interface/user-details';
+import {AddressDetails} from '../../interface/address-details';
+import {SignupApiService} from '../../service/signup-api.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,8 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor() { }
+  password2: String;
+  user: UserDetails;
+  address: AddressDetails;
 
+  constructor(private signupApi: SignupApiService) {
+    this.user.address = this.address;
+  }
+
+  saveUser() {
+    this.signupApi.saveUser().subscribe(user => this.user);
+  }
   ngOnInit() {
   }
 

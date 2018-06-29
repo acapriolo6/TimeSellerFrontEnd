@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Banner} from '../../../banner';
+import {Banner} from '../../../interface/banner';
 import {ApiService} from '../../../service/api.service';
 import {Router} from '@angular/router';
 
