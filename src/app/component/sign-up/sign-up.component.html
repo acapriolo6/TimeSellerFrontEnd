@@ -6,7 +6,7 @@
           <div class="row justify-content-center">
             <div class="col-12 col-sm-6">
               <label for="inputSurname">Cognome</label>
-              <input type="text" class="form-control" id="inputSurname" aria-describedby="emailHelp" placeholder="Cognome" name="inputSurname" [(ngModel)]="user.surname">
+              <input type="text" class="form-control" id="inputSurname" aria-describedby="emailHelp" placeholder="Cognome" name="surname" [(ngModel)]="user.surname">
             </div>
             <div class="col-12 col-sm-6">
               <label for="inputName">Nome</label>
@@ -26,17 +26,17 @@
           <div class="row justify-content-center">
             <div class="col-12">
               <label for="inputAddress">Indirizzo</label>
-              <input type="text" class="form-control" id="inputAddress" aria-describedby="emailHelp" placeholder="Indirizzo" name="inputAddress" [(ngModel)]="address.street">
+              <input type="text" class="form-control" id="inputAddress" aria-describedby="emailHelp" placeholder="Indirizzo" name="inputAddress" [(ngModel)]="password2">
             </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-6">
               <label for="inputNumber">Indirizzo</label>
-              <input type="text" class="form-control" id="inputNumber" aria-describedby="emailHelp" placeholder="Numero Civico" name="inputNumber" [(ngModel)]="address.houseNumber">
+              <input type="text" class="form-control" id="inputNumber" aria-describedby="emailHelp" placeholder="Numero Civico" name="inputNumber" [(ngModel)]="password2">
             </div>
             <div class="col-6">
               <label for="inputZipCode">CAP</label>
-              <input type="text" class="form-control" id="inputZipCode" aria-describedby="emailHelp" placeholder="84084" name="inputZipCode" [(ngModel)]="address.zipCode">
+              <input type="text" class="form-control" id="inputZipCode" aria-describedby="emailHelp" placeholder="84084" name="inputZipCode" [(ngModel)]="password2">
             </div>
           </div>
           <div class="row justify-content-center">
@@ -73,7 +73,7 @@
           </div>
           <div class="row justify-content-center">
             <div class="form-group justify-content-center text-center">
-              <button type="submit" class="btn btn-primary" (click)="saveUser();">Sign Up</button>
+              <button type="submit" class="btn btn-primary" (click)="saveUser()">Sign Up</button>
             </div>
           </div>
         </form>

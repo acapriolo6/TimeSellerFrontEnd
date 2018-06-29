@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Banner} from '../interface/banner';
-import {UserDetails} from '../interface/user-details';
 import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
+import {UserDetails} from '../class/user-details';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'my-auth-token'
+    'Content-Type':  'application/json'
   })
 };
 
@@ -30,10 +29,6 @@ export class SignupApiService {
   }
   addUser (user: UserDetails): Observable<UserDetails> {
     return this.httpClient.post<UserDetails>(this.serviceSaveUserUrl, user, httpOptions);
-  }
-
-  getBannerCallBack(callbackSucces: (data: Banner[]) => any, callBackError: (data: Banner[]) => any = () => {}) {
-    return this.httpClient.get( this.serviceBaseUrl + '/getAll').subscribe(callbackSucces, callBackError);
   }
 
 }
