@@ -16,8 +16,5 @@ export class UserDetails {
     this.address = new Address();
   }
 
-  isSet(){
-    return this.surname.length>0;
-  }
 
 }
