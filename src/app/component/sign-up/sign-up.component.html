@@ -26,17 +26,17 @@
           <div class="row justify-content-center">
             <div class="col-12">
               <label for="inputAddress">Indirizzo</label>
-              <input type="text" class="form-control" id="inputAddress" aria-describedby="emailHelp" placeholder="Indirizzo" name="inputAddress" [(ngModel)]="password2">
+              <input type="text" class="form-control" id="inputAddress" aria-describedby="emailHelp" placeholder="Indirizzo" name="inputAddress" [(ngModel)]="user.address.street">
             </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-6">
-              <label for="inputNumber">Indirizzo</label>
-              <input type="text" class="form-control" id="inputNumber" aria-describedby="emailHelp" placeholder="Numero Civico" name="inputNumber" [(ngModel)]="password2">
+              <label for="inputNumber">Numero civico</label>
+              <input type="text" class="form-control" id="inputNumber" aria-describedby="emailHelp" placeholder="Numero Civico" name="inputNumber" [(ngModel)]="user.address.houseNumber">
             </div>
             <div class="col-6">
               <label for="inputZipCode">CAP</label>
-              <input type="text" class="form-control" id="inputZipCode" aria-describedby="emailHelp" placeholder="84084" name="inputZipCode" [(ngModel)]="password2">
+              <input type="text" class="form-control" id="inputZipCode" aria-describedby="emailHelp" placeholder="84084" name="inputZipCode" [(ngModel)]="user.address.zipCode">
             </div>
           </div>
           <div class="row justify-content-center">

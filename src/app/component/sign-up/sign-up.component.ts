@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AddressDetails} from '../../interface/address-details';
 import {SignupApiService} from '../../service/signup-api.service';
 import {UserDetails} from '../../class/user-details';
+import {Customer} from '../../interface/customer';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,7 +18,9 @@ export class SignUpComponent implements OnInit {
   }
 
   saveUser() {
-    this.signupApi.saveUser().subscribe(user => this.user);
+    this.signupApi.addUser(this.user).subscribe((data: UserDetails) => {
+      console.log(' prova del cazzo!' + this.user.surname );
+    });
   }
 
   ngOnInit() {

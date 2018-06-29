@@ -27,8 +27,11 @@ export class SignupApiService {
   saveUser() {
     return this.httpClient.get( this.serviceBaseUrl + '/saveCustomer');
   }
-  addUser (user: UserDetails): Observable<UserDetails> {
-    return this.httpClient.post<UserDetails>(this.serviceSaveUserUrl, user, httpOptions);
+  addUser (user: UserDetails) {
+    console.log('jdfshkfjdhjs');
+    return this.httpClient.post(this.serviceSaveUserUrl, user, httpOptions);
+
+    /*return this.httpClient.post<UserDetails>(this.serviceSaveUserUrl, user, httpOptions);*/
   }
 
 }
