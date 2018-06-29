@@ -8,9 +8,11 @@ import {UserDetailComponent} from './component/user-detail/user-detail.component
 import {CardComponent} from './component/pageComponent/card/card.component';
 import {LoginComponent} from './component/login/login.component';
 import {CreateAuctionComponent} from './component/create-auction/create-auction.component';
+import {SignUpComponent} from './component/sign-up/sign-up.component';
 
 const routes: Routes = [
   {path: 'user/:username/:password/:age', component: UserDetailComponent},
+  {path: 'signup', component: SignUpComponent},
   {path: 'createAuction', component: CreateAuctionComponent},
   {path: 'login', component: LoginComponent},
   {path: 'index', component: IndexComponent},

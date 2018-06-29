@@ -15,6 +15,8 @@ import { LoginComponent } from './component/login/login.component';
 import { CreateAuctionComponent } from './component/create-auction/create-auction.component';
 import { GMapWrapperComponent } from './component/pageComponent/gmap-wrapper/gmap-wrapper.component';
 import { AgmCoreModule } from '@agm/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { SignUpComponent } from './component/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { AgmCoreModule } from '@agm/core';
     CardComponent,
     LoginComponent,
     CreateAuctionComponent,
-    GMapWrapperComponent
+    GMapWrapperComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
