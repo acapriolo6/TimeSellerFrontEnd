@@ -24,12 +24,9 @@ export class SignupApiService {
 
   }
 
-  saveUser() {
-    return this.httpClient.get( this.serviceBaseUrl + '/saveCustomer');
-  }
-  addUser (user: UserDetails) {
+  addElement(element: any, url: string) {
     console.log('jdfshkfjdhjs');
-    return this.httpClient.post(this.serviceSaveUserUrl, user, httpOptions);
+    return this.httpClient.post(environment.baseServiceUrl + url, element, httpOptions);
 
     /*return this.httpClient.post<UserDetails>(this.serviceSaveUserUrl, user, httpOptions);*/
   }

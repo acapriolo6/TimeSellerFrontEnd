@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule, RoutingModule} from './/app-routing.module';
 import { MyFirstRouteComponent } from './component/my-first-route/my-first-route.component';
 import { IndexComponent } from './component/index/index.component';
@@ -35,6 +35,7 @@ import { SignUpComponent } from './component/sign-up/sign-up.component';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     RoutingModule,
     HttpClientModule,

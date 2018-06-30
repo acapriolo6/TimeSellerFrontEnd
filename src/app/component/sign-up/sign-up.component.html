@@ -2,78 +2,173 @@
   <div class="row justify-content-center">
     <div class="col-12">
       <div class="form-group">
-        <form  onsubmit="return controlForm();" id="myForm">
+        <form  id="myForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()" *ngIf="!state">
           <div class="row justify-content-center">
             <div class="col-12 col-sm-6">
-              <label for="inputSurname">Cognome</label>
-              <input type="text" class="form-control" id="inputSurname" aria-describedby="emailHelp" placeholder="Cognome" name="surname" [(ngModel)]="user.surname">
+              <label>Cognome</label>
+              <input type="text" [(ngModel)]="user.surname" formControlName="surname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.surname.errors }" />
+              <div *ngIf="submitted && f.surname.errors" class="invalid-feedback">
+                <div *ngIf="f.surname.errors.required">First Name is required</div>
+              </div>
             </div>
             <div class="col-12 col-sm-6">
-              <label for="inputName">Nome</label>
-              <input type="text" class="form-control" id="inputName" placeholder="Nome" name="inputName" [(ngModel)]="user.name">
+              <label>Nome</label>
+              <input type="text" [(ngModel)]="user.name" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">First Name is required</div>
+              </div>
             </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-12 col-sm-6">
-              <label for="inputCF">Codice Fiscale</label>
-              <input type="text" class="form-control" id="inputCF" aria-describedby="emailHelp" placeholder="Codice Fiscale" name="inputCF" [(ngModel)]="user.fiscalCode">
+              <label>Codice Fiscale</label>
+              <input type="text" [(ngModel)]="user.fiscalCode" formControlName="fiscalCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fiscalCode.errors }" />
+              <div *ngIf="submitted && f.fiscalCode.errors" class="invalid-feedback">
+                <div *ngIf="f.fiscalCode.errors.required">First Name is required</div>
+              </div>
             </div>
             <div class="col-12 col-sm-6">
-              <label for="inputDate">Data di Nascita</label>
-              <input type="date" class="form-control" id="inputDate" placeholder="Data di Nascita" name="inputDate" [(ngModel)]="user.dateOfBirth">
+              <label>Data di Nascita</label>
+              <input type="date" [(ngModel)]="user.dateOfBirth" formControlName="dateOfBirth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors }" />
+              <div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
+                <div *ngIf="f.dateOfBirth.errors.required">First Name is required</div>
+              </div>
             </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-12">
-              <label for="inputAddress">Indirizzo</label>
-              <input type="text" class="form-control" id="inputAddress" aria-describedby="emailHelp" placeholder="Indirizzo" name="inputAddress" [(ngModel)]="user.address.street">
+              <label>Indirizzo</label>
+              <input type="text" [(ngModel)]="user.address.street" formControlName="street" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.street.errors }" />
+              <div *ngIf="submitted && f.street.errors" class="invalid-feedback">
+                <div *ngIf="f.street.errors.required">First Name is required</div>
+              </div>
             </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-6">
-              <label for="inputNumber">Numero civico</label>
-              <input type="text" class="form-control" id="inputNumber" aria-describedby="emailHelp" placeholder="Numero Civico" name="inputNumber" [(ngModel)]="user.address.houseNumber">
+              <label>Numero civico</label>
+              <input type="text" [(ngModel)]="user.address.houseNumber" formControlName="houseNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.houseNumber.errors }" />
+              <div *ngIf="submitted && f.houseNumber.errors" class="invalid-feedback">
+                <div *ngIf="f.houseNumber.errors.required">First Name is required</div>
+              </div>
             </div>
             <div class="col-6">
-              <label for="inputZipCode">CAP</label>
-              <input type="text" class="form-control" id="inputZipCode" aria-describedby="emailHelp" placeholder="84084" name="inputZipCode" [(ngModel)]="user.address.zipCode">
+              <label>CAP</label>
+              <input type="text" [(ngModel)]="user.address.zipCode" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }" />
+              <div *ngIf="submitted && f.zipCode.errors" class="invalid-feedback">
+                <div *ngIf="f.zipCode.errors.required">First Name is required</div>
+              </div>
             </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-12 col-sm-6">
-              <label for="inputTelephone">Cellulare</label>
-              <input type="tel" class="form-control" id="inputTelephone" aria-describedby="emailHelp" placeholder="N° Cellulare" name="inputTelephone" [(ngModel)]="user.phone">
+              <label>Cellulare</label>
+              <input type="tel" [(ngModel)]="user.phone" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+              <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                <div *ngIf="f.phone.errors.required">First Name is required</div>
+              </div>
             </div>
             <div class="col-12 col-sm-6">
-              <label for="inputIban">Iban</label>
-              <input type="text" class="form-control" id="inputIban" placeholder="Iban" name="inputIban" [(ngModel)]="user.iban">
+              <label>Iban</label>
+              <input type="text" [(ngModel)]="user.iban" formControlName="iban" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.iban.errors }" />
+              <div *ngIf="submitted && f.iban.errors" class="invalid-feedback">
+                <div *ngIf="f.iban.errors.required">First Name is required</div>
+              </div>
             </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-12 col-sm-6">
-              <label for="inputEmail">E-Mail</label>
-              <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="E-Mail" name="inputEmail" [(ngModel)]="user.email">
+              <label>E-Mail</label>
+              <input type="email" [(ngModel)]="user.email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">First Name is required</div>
+              </div>
             </div>
             <div class="col-12 col-sm-6">
-              <label for="inputUsername">Username</label>
-              <input type="text" class="form-control" id="inputUsername" aria-describedby="UsernameHelp" placeholder="Username" name="inputUsername" [(ngModel)]="user.username">
-              <small id="UsernameHelp" class="form-text text-muted">Questo username è già in uso</small>
+              <label>Username</label>
+              <input type="text" [(ngModel)]="user.username" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+              <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                <div *ngIf="f.username.errors.required">First Name is required</div>
+              </div>
             </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-12 col-sm-6">
-              <label for="inputPassword1">Password</label>
-              <input type="password" class="form-control" id="inputPassword1" aria-describedby="emailHelp" placeholder="Password" name="inputPassword1" [(ngModel)]="user.password">
+              <label>Password</label>
+              <input type="password" [(ngModel)]="user.password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">First Name is required</div>
+              </div>
             </div>
             <div class="col-12 col-sm-6">
-              <label for="inputPassword2">Password 2</label>
-              <input type="password" class="form-control" id="inputPassword2" aria-describedby="PassHelp" placeholder="Ripeti la password" name="inputPassword2" [(ngModel)]="password2">
-              <small id="PassHelp" class="form-text text-muted">Le password sono diverse</small>
+              <label>Password 2</label>
+              <input type="password" [(ngModel)]="password2" formControlName="password2" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password2.errors }" />
+              <div *ngIf="submitted && f.password2.errors" class="invalid-feedback">
+                <div *ngIf="f.password2.errors.required">First Name is required</div>
+              </div>
             </div>
           </div>
-          <div class="row justify-content-center">
+          <div class="row justify-content-center m-5">
             <div class="form-group justify-content-center text-center">
-              <button type="submit" class="btn btn-primary" (click)="saveUser()">Sign Up</button>
+              <button type="submit" class="btn btn-primary">Sign Up</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center" *ngIf="state">
+    <div class="col-12">
+      <div class="form-group">
+        <form  id="myForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="row justify-content-center">
+            <div class="col-12 col-sm-6">
+              <label>Cognome: {{user.surname}}</label>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-12 col-sm-6">
+              <label>Codice Fiscale: {{user.fiscalCode}}</label>
+            </div>
+            <div class="col-12 col-sm-6">
+              <label>Data di Nascita: {{user.dateOfBirth}}</label>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <label>Indirizzo: {{user.address.street}}</label>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-12 col-sm-6">
+              <label>N° Civico: {{user.address.houseNumber}}</label>
+            </div>
+            <div class="col-12 col-sm-6">
+              <label>CAP: {{user.address.zipCode}}</label>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-12 col-sm-6">
+              <label>Phone: {{user.phone}}</label>
+            </div>
+            <div class="col-12 col-sm-6">
+              <label>Iban: {{user.iban}}</label>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-12 col-sm-6">
+              <label>Username: {{user.username}}</label>
+            </div>
+            <div class="col-12 col-sm-6">
+              <label>E-Mail: {{user.email}}</label>
+            </div>
+          </div>
+          <div class="row justify-content-center  m-5">
+            <div class="form-group justify-content-center text-center">
+              <button type="submit" class="btn btn-primary" (click)="saveUser()">Confirm</button>
+            </div>
+            <div class="form-group justify-content-center text-center">
+              <button type="submit" class="btn btn-danger" (click)="changeState(false)">Cancel</button>
             </div>
           </div>
         </form>
