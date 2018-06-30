@@ -4,4 +4,8 @@ export class TimeItem {
   hours: number;
   minutes: number;
   id: number;
+
+
+  constructor() {
+  }
 }

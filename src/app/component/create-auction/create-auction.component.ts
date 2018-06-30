@@ -3,6 +3,7 @@ import {SignupApiService} from '../../service/signup-api.service';
 import {UserDetails} from '../../class/user-details';
 import {ModeAuction} from '../../class/mode-auction';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CreateAuctionService} from '../../service/create-auction.service';
 
 
 
@@ -17,9 +18,10 @@ export class CreateAuctionComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   auction = new ModeAuction();
-  minutes = 0;
+  minutes: number;
+  state = false;
 
-  constructor(private sendDataApi: SignupApiService, private formBuilder: FormBuilder) {
+  constructor(private sendDataApi: CreateAuctionService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -43,13 +45,16 @@ export class CreateAuctionComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     } else {
-      /*this.changeState(true);*/
+      this.changeState(true);
     }
   }
+  changeState(state: boolean) {
+    this.state = state;
+  }
 
-  saveUser() {
+  saveAuction() {
     this.sendDataApi.addElement(this.auction, '/user/newAuction').subscribe((data: ModeAuction) => {
-      console.log(' prova del cazzo!' + this.auction.price );
+      console.log(' prova del cazzo!' + this.auction.title);
     });
   }
 }

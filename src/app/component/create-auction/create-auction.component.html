@@ -78,55 +78,38 @@
   <div class="row justify-content-center" *ngIf="state">
     <div class="col-12">
       <div class="form-group">
-        <form  id="myForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <form  id="myFormRiepigolo" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
           <div class="row justify-content-center">
-            <div class="col-12 col-sm-6">
-              <label>Cognome: {{user.surname}}</label>
-            </div>
-            <div class="col-12 col-sm-6">
-              <label>Nome: {{user.name}}</label>
+            <div class="col-12 ">
+              <label>Titolo: {{auction.title}}</label>
             </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-12 col-sm-6">
-              <label>Codice Fiscale: {{user.fiscalCode}}</label>
+              <label>Ore in vendita: {{auction.item.hours}}</label>
             </div>
             <div class="col-12 col-sm-6">
-              <label>Data di Nascita: {{user.dateOfBirth}}</label>
+              <label>Minuti in vendita: {{auction.item.hours}}</label>
             </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-12">
-              <label>Indirizzo: {{user.address.street}}</label>
+              <label>Prezzo di partenza: {{auction.startPrice}}</label>
             </div>
           </div>
           <div class="row justify-content-center">
-            <div class="col-12 col-sm-6">
-              <label>N° Civico: {{user.address.houseNumber}}</label>
-            </div>
-            <div class="col-12 col-sm-6">
-              <label>CAP: {{user.address.zipCode}}</label>
+            <div class="col-12">
+              <label>L'asta scade tra: {{auction.countDownTimeEnd}} minuti</label>
             </div>
           </div>
           <div class="row justify-content-center">
-            <div class="col-12 col-sm-6">
-              <label>Phone: {{user.phone}}</label>
-            </div>
-            <div class="col-12 col-sm-6">
-              <label>Iban: {{user.iban}}</label>
-            </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-12 col-sm-6">
-              <label>Username: {{user.username}}</label>
-            </div>
-            <div class="col-12 col-sm-6">
-              <label>E-Mail: {{user.email}}</label>
+            <div class="col-12">
+              <label>Phone: {{auction.item.description}}</label>
             </div>
           </div>
           <div class="row justify-content-center  m-5">
             <div class="form-group justify-content-center text-center">
-              <button type="submit" class="btn btn-primary" (click)="saveUser()">Confirm</button>
+              <button type="submit" class="btn btn-primary" (click)="saveAuction()">Confirm</button>
             </div>
             <div class="form-group justify-content-center text-center">
               <button type="submit" class="btn btn-danger" (click)="changeState(false)">Cancel</button>
