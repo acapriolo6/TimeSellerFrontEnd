@@ -3,7 +3,6 @@ import {SignupApiService} from '../../service/signup-api.service';
 import {UserDetails} from '../../class/user-details';
 import {ModeAuction} from '../../class/mode-auction';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CreateAuctionService} from '../../service/create-auction.service';
 
 
 
@@ -21,7 +20,7 @@ export class CreateAuctionComponent implements OnInit {
   minutes: number;
   state = false;
 
-  constructor(private sendDataApi: CreateAuctionService, private formBuilder: FormBuilder) {
+  constructor(private sendDataApi: SignupApiService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
