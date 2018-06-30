@@ -52,8 +52,14 @@ export class CreateAuctionComponent implements OnInit {
   }
 
   saveAuction() {
-    this.sendDataApi.addElement(this.auction, '/user/newAuction').subscribe((data: ModeAuction) => {
-      console.log(' prova del cazzo!' + this.auction.title);
-    });
+    this.sendDataApi.addElement(this.auction, '/user/newAuction').subscribe( this.saveAuctionSuccess, this.saveAuctionError );
+  }
+
+  saveAuctionSuccess() {
+    alert('Inserimento avvenuto con successo!');
+  }
+
+  saveAuctionError() {
+    alert('Errore Inserimento ');
   }
 }
