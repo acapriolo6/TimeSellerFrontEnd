@@ -40,4 +40,9 @@ export class SignupApiService {
     return this.httpClient.get( this.serviceGetAuction + '/' + id);
   }
 
+  login(element: any, url: string) {
+    return this.httpClient.post(environment.baseServiceUrl + url, element, httpOptions);
+
+    /*return this.httpClient.post<Customer>(this.serviceSaveUserUrl, user, httpOptions);*/
+  }
 }
