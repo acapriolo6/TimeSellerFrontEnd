@@ -29,21 +29,25 @@
             </div>
           </div>
           <div class="row justify-content-center">
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-6">
               <label>Prezzo di partenza</label>
-              <input type="number" [(ngModel)]="auction.startPrice" formControlName="startPrice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.startPrice.errors }" />
-              <div *ngIf="submitted && f.startPrice.errors" class="invalid-feedback">
-                <div *ngIf="f.startPrice.errors.required">First Name is required</div>
+              <div class="row">
+                <input type="number" [(ngModel)]="auction.startPrice" formControlName="startPrice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.startPrice.errors }" />
+                <div *ngIf="submitted && f.startPrice.errors" class="invalid-feedback">
+                  <div *ngIf="f.startPrice.errors.required">First Name is required</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="btn-group">
+                  <div class="row">
+                    <div class="col-4 border border-primary rounded text-primary btn-hover" (click)="setStartPrice(1);">1€</div>
+                    <div class="col-4 border border-primary rounded text-primary btn-hover" (click)="setStartPrice(2);">2€</div>
+                    <div class="col-4 border border-primary rounded text-primary btn-hover" (click)="setStartPrice(3);">3€</div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="col-12 col-md-3">
-              <label>Prezzo di partenza</label>
-              <input type="number" [(ngModel)]="auction.startPrice" formControlName="startPrice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.startPrice.errors }" />
-              <div *ngIf="submitted && f.startPrice.errors" class="invalid-feedback">
-                <div *ngIf="f.startPrice.errors.required">First Name is required</div>
-              </div>
-            </div>
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-6">
               <label>Scadenza in minuti</label>
               <input type="number" [(ngModel)]="minutes" formControlName="minutes" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.minutes.errors }" />
               <div *ngIf="submitted && f.minutes.errors" class="invalid-feedback">
@@ -99,7 +103,7 @@
           </div>
           <div class="row justify-content-center">
             <div class="col-12">
-              <label>L'asta scade tra: {{auction.countDownTimeEnd}} minuti</label>
+              <label>L'asta scade tra: {{auction.countDownTimeEnd}}</label>
             </div>
           </div>
           <div class="row justify-content-center">

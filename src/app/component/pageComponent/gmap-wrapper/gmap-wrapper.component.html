@@ -6,5 +6,5 @@
   <agm-map *ngIf="!locationError" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
     <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
   </agm-map>
-  <input type="text" *ngIf="locationError && !initialState" class="form-control is-invalid" name="address" id="address" placeholder="Inserisci l'idirizzo manualmente!">
+  <input type="text" *ngIf="locationError" class="form-control is-invalid" name="address" id="address" placeholder="Inserisci l'idirizzo manualmente!">
 </div>

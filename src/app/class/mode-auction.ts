@@ -17,7 +17,6 @@ export class ModeAuction extends Sale {
 
   constructor() {
     super();
-    this.stateOfAuction = StateOfAuction.CLOSED;
   }
 }
 
