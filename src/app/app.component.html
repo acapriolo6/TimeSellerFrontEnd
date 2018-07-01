@@ -15,8 +15,10 @@
         <li class="nav-item dropdown">
           <a class="nav-link mtx-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
           <div class="dropdown-menu mtx-bg-blu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item mtx-white" routerLink="login" >Sign In</a>
-            <a class="dropdown-item mtx-white" routerLink="signup">Sign Up</a>
+            <a class="dropdown-item mtx-white" *ngIf="user == null" routerLink="login" >Sign In</a>
+            <a class="dropdown-item mtx-white" *ngIf="user == null" routerLink="signup">Sign Up</a>
+            <a class="dropdown-item mtx-white" *ngIf="user != null" routerLink="user/auction" >Aste create</a>
+            <a class="dropdown-item mtx-white" *ngIf="user != null" routerLink="signup">Sign Up 2</a>
             <!--<div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Something else here</a>-->
           </div>
@@ -31,7 +33,7 @@
 </header>
 
 <main role="main w-100 h-100">
-  <router-outlet></router-outlet>
+  <router-outlet (authorClick)="showAuthorFromParent($event)"></router-outlet>
 </main>
 
 <footer class="mtx-bg-blu mtx-white">

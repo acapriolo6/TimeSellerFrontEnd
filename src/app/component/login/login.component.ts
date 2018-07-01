@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {Customer} from '../../class/Customer';
+import {NotificationService} from '../../service/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,7 @@ export class LoginComponent implements OnInit {
   password = '';
   error = true;
 
-  constructor(private  route: ActivatedRoute) {
+  constructor(private  route: ActivatedRoute, private notification: NotificationService) {
     this.error = true;
     /*this.username = this.route.snapshot.params['username'];
     if (this.route.snapshot.params['username']) {
@@ -39,6 +41,18 @@ export class LoginComponent implements OnInit {
       this.error = true;
     }
     /*console.log(this.username + ' ' + this.error + ' ' + this.password ); */
+  }
+
+  @Output()
+  authorClick: EventEmitter<String> = new EventEmitter<String>();
+
+
+  loginEven(event, author) {
+    this.authorClick.emit(author);
+  }
+
+  provaNotification() {
+    this.notification.send('pippo');
   }
 
   ngOnInit() {
