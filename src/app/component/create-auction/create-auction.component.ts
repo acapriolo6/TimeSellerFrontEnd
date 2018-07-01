@@ -19,7 +19,7 @@ export class CreateAuctionComponent implements OnInit {
   submitted = false;
   auction = new ModeAuction();
   minutes: number;
-  hours =  5;
+  hours =  0;
   state = false;
 
   myDate: Date;
@@ -51,8 +51,8 @@ export class CreateAuctionComponent implements OnInit {
       return;
     } else {
       this.changeState(true);
-      this.auction.countDownTimeStart = new Date();
-      this.auction.countDownTimeEnd = this.auction.countDownTimeStart;
+      this.auction.countDownTimeStart = new Date(Date.now());
+      this.auction.countDownTimeEnd = new Date(Date.now());
       this.auction.countDownTimeEnd.setMinutes( this.auction.countDownTimeEnd.getMinutes() + this.minutes );
       this.auction.countDownTimeEnd.setHours( this.auction.countDownTimeEnd.getHours() + this.hours );
     }
@@ -67,7 +67,7 @@ export class CreateAuctionComponent implements OnInit {
 
   saveAuction() {
     this.sendDataApi.addElement(this.auction, '/user/newAuction').subscribe(data => {
-      alert('Inserimento avvenuto con successo!');
+      alert('Inserimento avvenuto con successo! Start: ' + this.auction.countDownTimeStart + 'End: ' + this.auction.countDownTimeEnd);
       this.prova();
     }, error => {
       alert('Errore Inserimento ');
