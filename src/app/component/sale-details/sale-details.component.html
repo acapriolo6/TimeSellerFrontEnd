@@ -1,38 +1,68 @@
 
-<div class="container-fluid w-100 h-100" id="accordion2" style="margin-top: 56px;">
-  <div class="row" *ngFor="let auction of listaAste; let i = index;">
+<div class="container-fluid w-100 h-100" id="accordion" style="margin-top: 56px;">
+  <div class="card row" *ngFor="let auction of listaAste; let i = index;">
     <div class="col-12">
-      <div class="card row">
+      <div class="row">
         <div class="col-12">
-          <div class="card-header" id="headingOne">
+          <div class="card-header" [id]="'heading' + i">
             <h5 class="mb-0">
-              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <a class="btn btn-link" data-toggle="collapse" [href]="'#collapse' + i" [attr.aria-expanded]="{'true': i == 0}" [attr.aria-controls]="'collapse' + i">
                 <h4 class="list-group-item-heading">{{auction.title}}</h4>
-              </button>
+              </a>
             </h5>
           </div>
         </div>
       </div>
       <div class="row">
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-          <div class="col-12">
-            <a href="" class="list-group-item">
+        <div [id]="'collapse' + i" class="collapse col-12" [ngClass]="{'show': i === 0}"  [attr.aria-labelledby]="'heading' + i" data-parent="#accordion">
+            <!--<a href="" class="list-group-item">-->
             <div class="row">
-                <div class="media col-12 col-lg-3">
-
-                    <img class="media-object img-rounded img-responsive" src="http://placehold.it/350x250" alt="placehold.it/350x250" >
-
+                <div class="media col-12 col-md-3">
+                    <img class="media-object img-rounded img-responsive" src="../../../assets/img/general.jpeg" alt="placehold.it/350x250" >
                 </div>
-                <div class="col-12 col-lg-6">
-                  <p class="list-group-item-text">
-                  </p>
+                <div class="col-12 col-md-9">
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <p class="list-group-item-text">
+                        Prezzo di partenza: {{auction.startPrice}}€.
+                      </p>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <p class="list-group-item-text">
+                        Prezzo finale: {{auction.price}}€.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <p class="list-group-item-text">
+                        Inizio asta: {{auction.countDownTimeStart}}.
+                      </p>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <p class="list-group-item-text">
+                        Fine asta: {{auction.countDownTimeEnd}}.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-md-6">
+                      <p class="list-group-item-text">
+                        Stato asta: {{auction.stateOfAuction}}.
+                      </p>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <p class="list-group-item-text">
+                        Stato vendita: {{auction.state}}.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-12 col-lg-3 text-center">
-                  <button type="button" class="btn btn-default btn-lg btn-block">Buy now TIME!</button>
-                </div>
+                <!--<div class="col-12 col-md-3 text-center">
+                  <button type="button" class="btn btn-default btn-lg btn-block"></button>
+                </div>-->
             </div>
-            </a>
-          </div>
+            <!--</a>-->
         </div>
       </div>
     </div>

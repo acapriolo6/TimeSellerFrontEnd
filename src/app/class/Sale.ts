@@ -13,6 +13,7 @@ export class Sale {
   payment: number;
   feedbackSeller: number;
   feedbackBuyer: number;
+  price: number;
 
   constructor() {
     this.location = new Address();
