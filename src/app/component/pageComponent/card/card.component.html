@@ -4,10 +4,11 @@
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" id="copyCol" *ngFor="let card of listaBanner; let i = index;">
       <div class="card">
         <div class="row">
-          <img class="card-img-top img-fluid col-6" [src]="card.url" alt="Card image cap">
+          <img class="card-img-top img-fluid col-6" src="../../../../assets/img/general.jpeg" alt="Card image cap">
           <div class="card-body col-6">
-            <h5 class="card-title">Esselunga</h5>
-            <p class="card-text">{{card.description}}</p>
+            <h5 class="card-title">{{card.title}} </h5>
+            <p class="card-text">Base asta: {{card.startPrice}} €</p>
+            <p class="card-text">Scade il: {{card.countDownTimeEnd | date :"dd/MM/yyyy HH:mm"}}</p>
             <a href="#" class="btn btn-primary">Bids</a>
           </div>
         </div>

@@ -27,4 +27,9 @@ export class CardComponent implements OnInit {
     this.getBanner();
   }
 
+  convert(){
+
+
+  }
+
 }

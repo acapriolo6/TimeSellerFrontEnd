@@ -1,4 +1,5 @@
 export interface Banner {
-  url: String;
-  description: String;
+  title: String;
+  startPrice: number;
+  countDownTimeEnd: Date;
 }
