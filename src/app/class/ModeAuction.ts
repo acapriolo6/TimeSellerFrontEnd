@@ -1,13 +1,13 @@
-import {UserDetails} from './user-details';
+import {Customer} from './Customer';
 import {PENDING} from '@angular/forms/src/model';
-import {Address} from './address';
-import {TimeItem} from './time-item';
-import {Sale} from './sale';
+import {Address} from './Address';
+import {TimeItem} from './TimeItem';
+import {Sale} from './Sale';
 
 export class ModeAuction extends Sale {
 
   dateOfSale: Date;
-  bidder: UserDetails[];
+  bidder: Customer[];
   countDownTimeStart: Date;
   countDownTimeEnd: Date;
   stateOfAuction: StateOfAuction;

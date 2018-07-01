@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {SignupApiService} from '../../service/signup-api.service';
-import {UserDetails} from '../../class/user-details';
-import {ModeAuction} from '../../class/mode-auction';
+import {Customer} from '../../class/Customer';
+import {ModeAuction} from '../../class/ModeAuction';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 

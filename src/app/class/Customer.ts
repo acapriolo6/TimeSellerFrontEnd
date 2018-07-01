@@ -1,6 +1,6 @@
-import {Address} from './address';
+import {Address} from './Address';
 
-export class UserDetails {
+export class Customer {
   dateOfBirth: Date;
   email: string;
   fiscalCode: string;

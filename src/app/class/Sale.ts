@@ -1,14 +1,14 @@
-import {Address} from './address';
-import {TimeItem} from './time-item';
-import {UserDetails} from './user-details';
+import {Address} from './Address';
+import {TimeItem} from './TimeItem';
+import {Customer} from './Customer';
 
 export class Sale {
   id: number;
   dateOfSale: Date;
   state: StateOfSale;
   location: Address;
-  seller: UserDetails;
-  buyer: UserDetails;
+  seller: Customer;
+  buyer: Customer;
   item: TimeItem;
   payment: number;
   feedbackSeller: number;
@@ -16,8 +16,8 @@ export class Sale {
 
   constructor() {
     this.location = new Address();
-    this.seller = new UserDetails();
-    this.buyer = new UserDetails();
+    this.seller = new Customer();
+    this.buyer = new Customer();
     this.item = new TimeItem();
   }
 }

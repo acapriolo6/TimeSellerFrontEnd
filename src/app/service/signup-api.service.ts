@@ -4,7 +4,8 @@ import {environment} from '../../environments/environment';
 import {Banner} from '../interface/banner';
 import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import {UserDetails} from '../class/user-details';
+import {Customer} from '../class/Customer';
+import {ModeAuction} from '../class/ModeAuction';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,17 +19,25 @@ const httpOptions = {
 export class SignupApiService {
 
   serviceBaseUrl: String = environment.baseServiceUrl + '/user';
-  serviceSaveUserUrl: string = environment.baseServiceUrl + '/user' + '/saveCustomer';
+  serviceSaveUserUrl: string = this.serviceBaseUrl + '/saveCustomer';
+  serviceGetAuction: string = this.serviceBaseUrl + '/getAuction';
 
   constructor( private httpClient: HttpClient) {
 
   }
 
   addElement(element: any, url: string) {
-    console.log('jdfshkfjdhjs');
     return this.httpClient.post(environment.baseServiceUrl + url, element, httpOptions);
 
-    /*return this.httpClient.post<UserDetails>(this.serviceSaveUserUrl, user, httpOptions);*/
+    /*return this.httpClient.post<Customer>(this.serviceSaveUserUrl, user, httpOptions);*/
+  }
+
+  getAuction(id: number, callbackSucces: (data: ModeAuction[]) => any, callBackError: (data: Error) => any = () => {}) {
+    return this.httpClient.get( this.serviceGetAuction + '/' + id).subscribe(callbackSucces, callBackError);
+  }
+
+  getAuctionProva(id: number) {
+    return this.httpClient.get( this.serviceGetAuction + '/' + id);
   }
 
 }

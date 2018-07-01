@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {SignupApiService} from '../../service/signup-api.service';
-import {UserDetails} from '../../class/user-details';
+import {Customer} from '../../class/Customer';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Address} from '../../class/address';
+import {Address} from '../../class/Address';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,7 +12,7 @@ import {Address} from '../../class/address';
 export class SignUpComponent implements OnInit {
 
   password2: String;
-  user: UserDetails = new UserDetails();
+  user: Customer = new Customer();
 
   registerForm: FormGroup;
   submitted = false;
@@ -54,7 +54,7 @@ export class SignUpComponent implements OnInit {
   }
 
   saveUser() {
-    this.signupApi.addElement(this.user, '/user/saveCustomer').subscribe((data: UserDetails) => {
+    this.signupApi.addElement(this.user, '/user/saveCustomer').subscribe((data: Customer) => {
       console.log(' prova del cazzo!' + this.user.surname );
     });
   }

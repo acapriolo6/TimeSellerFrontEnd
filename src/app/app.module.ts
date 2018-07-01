@@ -17,6 +17,7 @@ import { GMapWrapperComponent } from './component/pageComponent/gmap-wrapper/gma
 import { AgmCoreModule } from '@agm/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { SignUpComponent } from './component/sign-up/sign-up.component';
+import { SaleDetailsComponent } from './component/sale-details/sale-details.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SignUpComponent } from './component/sign-up/sign-up.component';
     LoginComponent,
     CreateAuctionComponent,
     GMapWrapperComponent,
-    SignUpComponent
+    SignUpComponent,
+    SaleDetailsComponent
   ],
   imports: [
     BrowserModule,
