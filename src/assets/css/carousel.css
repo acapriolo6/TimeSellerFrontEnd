@@ -6,28 +6,27 @@ html{
   height:100%;
 }
 body {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  color: #5a5a5a;
-  width: 100%;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
   background-image: url("../img/backgroundImage.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+  padding-top: 3rem;
+  color: #5a5a5a;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin:0;
+  padding:0;
 }
 main{
-  min-width: 100%;
   min-height: 100%;
   flex: 1;
-
 }
 
 footer {
-  margin-top: 50px;
+  padding: 20px;
   margin-bottom: 0px;
   bottom: 0;
   width: 100%;
