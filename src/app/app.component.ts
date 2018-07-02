@@ -44,6 +44,14 @@ export class AppComponent implements OnInit {
     });
   }
 
+  provaRouter() {
+    if (this.user == null) {
+      return 'login';
+    } else {
+      return 'createAuction';
+    }
+  }
+
   ngOnInit() {
     const subscription = this.notification.subscribe(
       value => {this.user = value; alert(value); },

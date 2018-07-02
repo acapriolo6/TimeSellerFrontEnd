@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Customer} from '../../class/Customer';
 import {NotificationService} from '../../service/notification.service';
 import {SignupApiService} from '../../service/signup-api.service';
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   user = new Customer();
   error = true;
 
-  constructor(private  route: ActivatedRoute, private notification: NotificationService, private sendDataApi: SignupApiService) {
+  constructor(private  route: ActivatedRoute, private notification: NotificationService, private sendDataApi: SignupApiService, private router: Router) {
     this.error = true;
     /*this.username = this.route.snapshot.params['username'];
     if (this.route.snapshot.params['username']) {
@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
     this.sendDataApi.login(this.user, '/user/checkUser').subscribe(data => {
       alert('Login avvenuto con successo!');
       this.notification.send(this.user.username);
+      this.router.navigate(['/user/auction']);
     }, error => {
       alert('Errore Login ');
     }  );
