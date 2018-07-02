@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     /*alert('Dati pre invio: ' + this.user.username + ' ' + this.user.password )*/
-    this.sendDataApi.login(this.user, '/user/checkUser').subscribe(data => {
+    this.sendDataApi.login(this.user, '/user/login').subscribe(data => {
       alert('Login avvenuto con successo!');
       this.notification.send(this.user.username);
       this.router.navigate(['/user/auction']);

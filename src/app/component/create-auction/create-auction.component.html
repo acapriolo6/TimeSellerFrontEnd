@@ -48,10 +48,32 @@
               </div>
             </div>
             <div class="col-12 col-md-6">
-              <label>Scadenza in minuti</label>
-              <input type="number" [(ngModel)]="minutes" formControlName="minutes" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.minutes.errors }" />
-              <div *ngIf="submitted && f.minutes.errors" class="invalid-feedback">
-                <div *ngIf="f.minutes.errors.required">First Name is required</div>
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <label>Scadenza in ore</label>
+                  <select [(ngModel)]="hours" formControlName="hours" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.hours.errors }">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                  <div *ngIf="submitted && f.hours.errors" class="invalid-feedback">
+                    <div *ngIf="f.hours.errors.required">First Name is required</div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <label>Scadenza in minuti</label>
+                  <select [(ngModel)]="minutes" formControlName="minutes" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.minutes.errors }">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="7">7</option>
+                    <option value="10">10</option>
+                  </select>
+                  <div *ngIf="submitted && f.minutes.errors" class="invalid-feedback">
+                    <div *ngIf="f.minutes.errors.required">First Name is required</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -93,7 +115,7 @@
               <label>Ore in vendita: {{auction.item.hours}}</label>
             </div>
             <div class="col-12 col-sm-6">
-              <label>Minuti in vendita: {{auction.item.hours}}</label>
+              <label>Minuti in vendita: {{auction.item.minutes}}</label>
             </div>
           </div>
           <div class="row justify-content-center">

@@ -19,7 +19,7 @@ export class CreateAuctionComponent implements OnInit {
   submitted = false;
   auction = new ModeAuction();
   minutes: number;
-  hours =  0;
+  hours: number;
   state = false;
 
   myDate: Date;
@@ -53,8 +53,12 @@ export class CreateAuctionComponent implements OnInit {
       this.changeState(true);
       this.auction.countDownTimeStart = new Date(Date.now());
       this.auction.countDownTimeEnd = new Date(Date.now());
-      this.auction.countDownTimeEnd.setMinutes( this.auction.countDownTimeEnd.getMinutes() + this.minutes );
-      this.auction.countDownTimeEnd.setHours( this.auction.countDownTimeEnd.getHours() + this.hours );
+      /*this.auction.countDownTimeEnd.setMinutes( this.auction.countDownTimeEnd..getMinutes() + this.minutes );
+      this.auction.countDownTimeEnd.setHours( this.auction.countDownTimeEnd.getHours() + this.hours );*/
+      let addMinutesHours = 0;
+      addMinutesHours = this.hours * 60 * 60 * 1000;
+      addMinutesHours += this.minutes * 60000;
+      this.auction.countDownTimeEnd = new Date(this.auction.countDownTimeEnd.getTime() + addMinutesHours);
     }
   }
   changeState(state: boolean) {

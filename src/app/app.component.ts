@@ -52,6 +52,11 @@ export class AppComponent implements OnInit {
     }
   }
 
+  signUpFunction() {
+    alert('Utente disconnesso!');
+    this.router.navigate(['/index']);
+  }
+
   ngOnInit() {
     const subscription = this.notification.subscribe(
       value => {this.user = value; alert(value); },
