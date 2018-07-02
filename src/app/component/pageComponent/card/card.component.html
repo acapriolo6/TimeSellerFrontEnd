@@ -1,11 +1,11 @@
 
   <!-- Three columns of text below the carousel -->
-  <div class="row" id="principalRow">
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" id="copyCol" *ngFor="let card of listaBanner; let i = index;">
+  <div class="row bg-transparent" id="principalRow">
+    <div class="col-xs-12 col-sm-6 col-lg-4" id="copyCol" *ngFor="let card of listaBanner; let i = index;">
       <div class="card">
         <div class="row">
-          <img class="card-img-top img-fluid col-6" src="../../../../assets/img/general.jpeg" alt="Card image cap">
-          <div class="card-body col-6">
+          <img class="card-img-top img-fluid col-6 col-sm-5 col-md-6 col-lg-4" [src]="'../../../../assets/img/card'+i%3+'.jpg'" alt="Card image cap">
+          <div class="card-body col-6 col-sm-7 col-md-6 col-lg-8">
             <h5 class="card-title">{{card.title}} </h5>
             <p class="card-text">Base asta: {{card.startPrice}} €</p>
             <p class="card-text">Scade il: {{card.countDownTimeEnd | date :"dd/MM/yyyy HH:mm"}}</p>
