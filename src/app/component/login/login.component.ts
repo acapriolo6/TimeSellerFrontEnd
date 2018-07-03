@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   }
 
   controlForm() {
-    if ( this.user.password.length > 0 && this.user.username.length > 0) {
+    if (this.user.password != null && this.user.username != null && this.user.password.length > 0 && this.user.username.length > 0) {
       this.error = false;
     } else {
       this.error = true;
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
     /*alert('Dati pre invio: ' + this.user.username + ' ' + this.user.password )*/
     this.sendDataApi.login(this.user, '/user/login').subscribe(data => {
       alert('Login avvenuto con successo!');
-      this.notification.send(this.user.username);
+      this.notification.send(this.user);
       this.router.navigate(['/user/auction']);
     }, error => {
       alert('Errore Login ');

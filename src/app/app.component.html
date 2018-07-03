@@ -13,14 +13,12 @@
           <a class="nav-link mtx-white" routerLink={{provaRouter()}} >Auction</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link mtx-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+          <a class="nav-link mtx-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{profile.toLocaleUpperCase()}}</a>
           <div class="dropdown-menu mtx-bg-blu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item mtx-white" *ngIf="user == null" routerLink="login" >Sign In</a>
             <a class="dropdown-item mtx-white" *ngIf="user == null" routerLink="signup">Sign Up</a>
             <a class="dropdown-item mtx-white" *ngIf="user != null" routerLink="user/auction">Aste create</a>
-            <a class="dropdown-item mtx-white" *ngIf="user != null" (click)="signUpFunction()">Sign Up </a>
-            <!--<div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>-->
+            <a class="dropdown-item mtx-white" href="#" (click)="signUpFunction()" *ngIf="user != null">Sign Up</a>
           </div>
         </li>
       </ul>

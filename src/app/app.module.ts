@@ -18,6 +18,7 @@ import { AgmCoreModule } from '@agm/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { SignUpComponent } from './component/sign-up/sign-up.component';
 import { SaleDetailsComponent } from './component/sale-details/sale-details.component';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import { SaleDetailsComponent } from './component/sale-details/sale-details.comp
       libraries: ['node_modules/@agm'],
     })
   ],
-  providers: [],
+  providers: [
+    CookieService
+  ],
   bootstrap: [
     AppComponent
   ]
