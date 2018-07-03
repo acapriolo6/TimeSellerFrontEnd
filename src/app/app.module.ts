@@ -19,6 +19,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { SignUpComponent } from './component/sign-up/sign-up.component';
 import { SaleDetailsComponent } from './component/sale-details/sale-details.component';
 import {CookieService} from 'ngx-cookie-service';
+import { GoogleMapsComponent } from './component/pageComponent/google-maps/google-maps.component';
+import { LoadingAnimationComponent } from './component/pageComponent/loading-animation/loading-animation.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import {CookieService} from 'ngx-cookie-service';
     CreateAuctionComponent,
     GMapWrapperComponent,
     SignUpComponent,
-    SaleDetailsComponent
+    SaleDetailsComponent,
+    GoogleMapsComponent,
+    LoadingAnimationComponent
   ],
   imports: [
     BrowserModule,

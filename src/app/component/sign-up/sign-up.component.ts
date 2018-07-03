@@ -3,6 +3,7 @@ import {SignupApiService} from '../../service/signup-api.service';
 import {Customer} from '../../class/Customer';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Address} from '../../class/Address';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -18,7 +19,7 @@ export class SignUpComponent implements OnInit {
   submitted = false;
   state = false;
 
-  constructor( private signupApi: SignupApiService, private formBuilder: FormBuilder) { }
+  constructor( private signupApi: SignupApiService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -55,7 +56,8 @@ export class SignUpComponent implements OnInit {
 
   saveUser() {
     this.signupApi.addElement(this.user, '/user/saveCustomer').subscribe((data: Customer) => {
-      console.log(' prova del cazzo!' + this.user.surname );
+      console.log('Username: ' + this.user.surname );
+      this.router.navigate(['/user/auction']);
     });
   }
 
