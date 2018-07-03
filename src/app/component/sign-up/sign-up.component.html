@@ -47,14 +47,14 @@
           <div class="row justify-content-center">
             <div class="col-6">
               <label>Numero civico</label>
-              <input type="text" [(ngModel)]="user.address.houseNumber" formControlName="houseNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.houseNumber.errors }" />
+              <input type="number" [(ngModel)]="user.address.houseNumber" formControlName="houseNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.houseNumber.errors }" />
               <div *ngIf="submitted && f.houseNumber.errors" class="invalid-feedback">
                 <div *ngIf="f.houseNumber.errors.required">First Name is required</div>
               </div>
             </div>
             <div class="col-6">
               <label>CAP</label>
-              <input type="text" [(ngModel)]="user.address.zipCode" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }" />
+              <input type="number" [(ngModel)]="user.address.zipCode" formControlName="zipCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }" />
               <div *ngIf="submitted && f.zipCode.errors" class="invalid-feedback">
                 <div *ngIf="f.zipCode.errors.required">First Name is required</div>
               </div>
@@ -63,7 +63,7 @@
           <div class="row justify-content-center">
             <div class="col-12 col-sm-6">
               <label>Cellulare</label>
-              <input type="tel" [(ngModel)]="user.phone" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+              <input type="number" [(ngModel)]="user.phone" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
               <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
                 <div *ngIf="f.phone.errors.required">First Name is required</div>
               </div>
@@ -120,7 +120,7 @@
   <div class="row justify-content-center" *ngIf="state">
     <div class="col-12">
       <div class="form-group">
-        <form  id="myForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <form  id="myForm2">
           <div class="row justify-content-center">
             <div class="col-12 col-sm-6">
               <label>Cognome: {{user.surname}}</label>

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SignupApiService} from '../../service/signup-api.service';
 import {Customer} from '../../class/Customer';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Address} from '../../class/Address';
 import {Router} from '@angular/router';
 
@@ -16,8 +16,10 @@ export class SignUpComponent implements OnInit {
   user: Customer = new Customer();
 
   registerForm: FormGroup;
+  iban: FormControl;
   submitted = false;
   state = false;
+
 
   constructor( private signupApi: SignupApiService, private formBuilder: FormBuilder, private router: Router) { }
 
@@ -29,28 +31,31 @@ export class SignUpComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
       dateOfBirth: ['', Validators.required],
       fiscalCode: ['', Validators.required],
-      iban: ['', Validators.required],
+      iban: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[A-Z]{2}$')
+      ]),
       phone: ['', Validators.required],
       username: ['', Validators.required],
       street: ['', Validators.required],
-      password2: ['', Validators.required],
+      password2: ['', [Validators.required, Validators.minLength(6)], Validators.bind(this.user.password)],
       houseNumber: ['', Validators.required],
-      zipCode: ['', Validators.required]
+      zipCode: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]]
     });
   }
 
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
-
-
     this.submitted = true;
     console.log('Ecco: ' + this.submitted + ' - ' + this.registerForm.invalid + ' - ' );
     // stop here if form is invalid
     if (this.registerForm.invalid) {
+      alert('NON Form valida');
       return;
     } else {
-      this.changeState(true);
+      /*this.changeState(true);*/
+      alert('Form valida');
     }
   }
 
