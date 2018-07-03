@@ -9,6 +9,12 @@ export class CarouselComponent implements OnInit {
 
   /*@Input("config") carouselList: CarouselInterface[];*/
 
+  alert(msg) {
+    alert(msg);
+  }
+
+  @Input() auctionLink: string;
+
   constructor() { }
 
   ngOnInit() {

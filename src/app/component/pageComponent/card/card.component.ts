@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Banner} from '../../../interface/banner';
 import {ApiService} from '../../../service/api.service';
 import {Router} from '@angular/router';
@@ -10,25 +10,15 @@ import {Router} from '@angular/router';
 })
 export class CardComponent implements OnInit {
 
-  listaBanner: Banner[];
+  @Input() listaBanner: Banner[];
 
   constructor(private route: Router, private apiService: ApiService) { }
 
-  getBanner() {
-    this.apiService.getBanner().subscribe((data: Banner[]) => {
-        this.listaBanner = data;
-      },
-      (error: any) => {
-        console.log(error);
-      });
-  }
 
   ngOnInit() {
-    this.getBanner();
   }
 
-  convert(){
-
+  convert() {
 
   }
 

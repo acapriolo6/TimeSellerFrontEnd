@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
+import {Customer} from '../class/Customer';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoreService {
 
-  temp = {};
+  user: Customer;
 
   constructor() { }
 
   setValue (val) {
-    this.temp = val;
+    this.user = val;
   }
 
   getValue () {
-    return this.temp;
+    return this.user;
   }
 }
