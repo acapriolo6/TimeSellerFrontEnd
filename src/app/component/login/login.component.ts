@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Customer} from '../../class/Customer';
 import {NotificationService} from '../../service/notification.service';
 import {SignupApiService} from '../../service/signup-api.service';
+import {RispostaDTO} from "../../class/RispostaDTO";
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
 
 
   user = new Customer();
+  //rispostaDTO = new RispostaDTO();
   error = true;
 
   constructor(private  route: ActivatedRoute, private notification: NotificationService, private sendDataApi: SignupApiService, private router: Router) {
@@ -32,6 +34,11 @@ export class LoginComponent implements OnInit {
     } else {
       this.error = true;
     }
+    /*if ( this.rispostaDTO.password === '' && this.rispostaDTO.username === '') {
+      this.error = true;
+    } else {
+      this.error = true;
+    }*/
     console.log('aooooooooo');
   }
 
@@ -55,11 +62,13 @@ export class LoginComponent implements OnInit {
   login() {
     /*alert('Dati pre invio: ' + this.user.username + ' ' + this.user.password )*/
     this.sendDataApi.login(this.user, '/user/login').subscribe(data => {
-      alert('Login avvenuto con successo!');
+    // this.sendDataApi.login(this.rispostaDTO, '/user/login').subscribe(data => {
+      alert('Login avvenuto con successo!' + JSON.stringify(data));
       this.notification.send(this.user);
+      // this.notification.send(this.rispostaDTO);
       this.router.navigate(['/user/auction']);
     }, error => {
-      alert('Errore Login ');
+      alert('Errore Login ' + JSON.stringify(error));
     }  );
   }
 

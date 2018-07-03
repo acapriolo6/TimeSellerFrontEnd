@@ -58,6 +58,7 @@ export class CreateAuctionComponent implements OnInit {
       let addMinutesHours = 0;
       addMinutesHours = this.hours * 60 * 60 * 1000;
       addMinutesHours += this.minutes * 60000;
+      this.auction.seller = JSON.parse(localStorage.getItem('login'));
       this.auction.countDownTimeEnd = new Date(this.auction.countDownTimeEnd.getTime() + addMinutesHours);
     }
   }

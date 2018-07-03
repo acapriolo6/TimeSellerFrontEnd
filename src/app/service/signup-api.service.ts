@@ -36,8 +36,8 @@ export class SignupApiService {
     return this.httpClient.get( this.serviceGetAuction + '/' + id).subscribe(callbackSucces, callBackError);
   }
 
-  getAuctionProva(id: number) {
-    return this.httpClient.get( this.serviceGetAuction + '/' + id);
+  getAuctionProva(username: string) {
+    return this.httpClient.get( this.serviceGetAuction + '/' + username);
   }
 
   login(element: any, url: string) {

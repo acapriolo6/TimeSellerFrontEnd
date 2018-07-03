@@ -6,6 +6,7 @@ import {ApiService} from '../../service/api.service';
 import {SignupApiService} from '../../service/signup-api.service';
 import {error} from 'util';
 import {e} from '@angular/core/src/render3';
+import {Customer} from "../../class/Customer";
 
 @Component({
   selector: 'app-sale-details',
@@ -15,12 +16,11 @@ import {e} from '@angular/core/src/render3';
 export class SaleDetailsComponent implements OnInit {
 
   listaAste: ModeAuction[];
-  id = 4;
-
+  c: Customer = JSON.parse(localStorage.getItem('login'));
   constructor(private api: SignupApiService) { }
 
   getAuction() {
-    this.api.getAuction(this.id, this.getAuctionCallSuccess, this.getAuctionCallError);
+    this.api.getAuction(4, this.getAuctionCallSuccess, this.getAuctionCallError);
   }
 
   getAuctionCallSuccess(data: ModeAuction[]) {
@@ -33,7 +33,8 @@ export class SaleDetailsComponent implements OnInit {
   }
 
   getAuctionProva() {
-    this.api.getAuctionProva(this.id).subscribe((data: ModeAuction[]) => {
+    alert(this.c.username);
+    this.api.getAuctionProva(this.c.username).subscribe((data: ModeAuction[]) => {
         this.listaAste = data;
       },
       (data: Error) => {
