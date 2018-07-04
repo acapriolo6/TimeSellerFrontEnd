@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-12">
       <div class="row">
-        <div class="col-12" *ngIf="!loading">
+        <div class="col-12" *ngIf="!loading && !correct">
           <form [formGroup]="angularForm" novalidate>
             <div class="row">
               <div class="col-12 col-md-6">
@@ -59,7 +59,7 @@
                         <select class="custom-select form-control" formControlName="gender" [(ngModel)]="user.gender">
                           <option value="M">M</option>
                           <option value="F">F</option>
-                          <option value="">Sex</option>
+                          <option value="" selected></option>
                         </select>
                       </div>
                       <div *ngIf="submitted && angularForm.controls['gender'].invalid" class="alert alert-danger">
@@ -151,9 +151,9 @@
                     <div class="col-12">
                       <div class="form-group">
                         <label>E-mail:</label>
-                        <input class="form-control" formControlName="email" type="text" [(ngModel)]="user.email">
+                        <input class="form-control" formControlName="email" type="text" (blur)="checkEmail()" (keyup)="checkEmail()" [(ngModel)]="user.email">
                       </div>
-                      <div *ngIf="submitted && angularForm.controls['email'].invalid" class="alert alert-danger">
+                      <div *ngIf="(submitted && angularForm.controls['email'].invalid )" class="alert alert-danger">
                         <div *ngIf="angularForm.controls['email'].errors.required">
                           E-mail is required.
                         </div>
@@ -161,18 +161,24 @@
                           E-mail is not correct.
                         </div>
                       </div>
+                      <div *ngIf="emailUsed" class="alert alert-danger">
+                        E-mail already used.
+                      </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-12">
                       <div class="form-group">
                         <label>Username:</label>
-                        <input class="form-control" formControlName="username" type="text" (blur)="checkUsername(user.username, '/user/usernameExists')" [(ngModel)]="user.username">
+                        <input class="form-control" formControlName="username" type="text" (blur)="checkUsername()" (keyup)="checkUsername()"  [(ngModel)]="user.username">
                       </div>
-                      <div *ngIf="submitted && angularForm.controls['username'].invalid"   class="alert alert-danger">
+                      <div *ngIf="(submitted && angularForm.controls['username'].invalid)"   class="alert alert-danger">
                         <div *ngIf="angularForm.controls['username'].errors.required">
                           Username is required.
                         </div>
+                      </div>
+                      <div *ngIf="usernameUsed" class="alert alert-danger">
+                        Username alredy used.
                       </div>
                     </div>
                   </div>
@@ -180,7 +186,7 @@
                     <div class="col-6">
                       <div class="form-group">
                         <label>Password:</label>
-                        <input class="form-control" formControlName="password" type="text" [(ngModel)]="user.password">
+                        <input class="form-control" formControlName="password" type="password" [(ngModel)]="user.password">
                       </div>
                       <div *ngIf="angularForm.controls['password'].invalid && ( angularForm.controls['password'].touched)" class="alert alert-danger">
                         <div *ngIf="angularForm.controls['password'].errors.required">
@@ -194,7 +200,7 @@
                     <div class="col-6">
                       <div class="form-group">
                         <label>Password di conferma:</label>
-                        <input class="form-control" formControlName="password2" type="text" [(ngModel)]="password2">
+                        <input class="form-control" formControlName="password2" type="password" [(ngModel)]="password2">
                       </div>
                       <div *ngIf="submitted && angularForm.controls['password2'].invalid" class="alert alert-danger">
                         <div *ngIf="angularForm.controls['password2'].errors.required">
@@ -230,6 +236,9 @@
         </div>
         <div class="col-3 offset-4 justify-content-center mt-50" *ngIf="loading">
           <app-loading-animation></app-loading-animation>
+        </div>
+        <div class="col-12 justify-content-center mt-40 bg-success display-4" *ngIf="correct">
+          Registrazione avvenuta con successo. A breve sarai reidirizzato.
         </div>
       </div>
     </div>

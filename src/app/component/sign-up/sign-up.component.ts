@@ -6,6 +6,7 @@ import {Address} from '../../class/Address';
 import {Router} from '@angular/router';
 import {s} from '@angular/core/src/render3';
 import {HttpHeaders} from '@angular/common/http';
+import {error} from 'util';
 
 @Component({
   selector: 'app-sign-up',
@@ -21,7 +22,10 @@ export class SignUpComponent implements OnInit {
   model: any = {};
   submitted = false;
   password2 = '';
+  usernameUsed = false;
+  emailUsed = false;
   loading = false;
+  correct = false;
 
   constructor( private signupApi: SignupApiService, private formBuilder: FormBuilder, private router: Router) {
     this.createForm();
@@ -45,33 +49,41 @@ export class SignUpComponent implements OnInit {
       password2: ['', [Validators.required,
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{6,10}$') ]],
       gender: ['', [Validators.required,
-        Validators.pattern('^M$') ]],
+        Validators.pattern('^M$|^F$') ]],
       username: ['', Validators.required],
     });
   }
 
-  checkUsername(field: string, url: string) {
-    const httpOptions = new HttpHeaders({
-        'Content-Type':  'application/json',
-        'params': '{"username":"' + field + '"}'
-      });
-    alert(JSON.stringify(httpOptions));
-    this.signupApi.postRequestWithParameters(field, url, httpOptions).subscribe((data: boolean) => {
-      console.log('Username: ' + this.user.surname );
+  checkUsername() {
+    this.signupApi.login(this.user.username, '/user/usernameExists' + '?username=' + this.user.username + '')
+      .subscribe((data: boolean) => {
       /*this.router.navigate(['/user/auction']);*/
-      alert(data);
-    }, (error: Error) =>{
-      alert(error.message);
+      this.usernameUsed = data;
+        console.log('Username: ' + data);
+    }, (er: Error) => {
+      alert(er.message);
+    });
+  }
+
+  checkEmail() {
+    this.signupApi.login(this.user.email, '/user/emailExists' + '?email=' + this.user.email + '')
+      .subscribe((data: boolean) => {
+      /*this.router.navigate(['/user/auction']);*/
+      this.emailUsed = data;
+        console.log('Email Risposta: ' + data);
+    }, (er: Error) => {
+      alert(er.message);
     });
   }
 
   onSubmit() {
-    if ((this.angularForm.pristine || this.angularForm.invalid) || (this.password2 !== this.user.password)  ) {
+    if ((this.angularForm.pristine || this.angularForm.invalid) ||
+      (this.password2 !== this.user.password) || (this.emailUsed) || (this.usernameUsed) ) {
       this.submitted = true;
     } else {
       this.submitted = false;
       this.loading = true;
-      /*this.saveUser();*/
+      this.saveUser();
     }
   }
 
@@ -84,12 +96,21 @@ export class SignUpComponent implements OnInit {
     });
   }
 
+  prova() {
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 2000);
+  }
 
   saveUser() {
     this.signupApi.addElement(this.user, '/user/saveCustomer').subscribe((data: Customer) => {
       console.log('Username: ' + this.user.surname );
       /*this.router.navigate(['/user/auction']);*/
-      this.loading = false;
+      /*this.loading = false;*/
+      this.correct = true;
+      this.prova();
+    }, (er: Error) => {
+      alert(er.message);
     });
   }
 
