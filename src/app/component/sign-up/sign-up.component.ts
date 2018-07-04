@@ -5,6 +5,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Address} from '../../class/Address';
 import {Router} from '@angular/router';
 import {s} from '@angular/core/src/render3';
+import {HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-sign-up',
@@ -43,12 +44,19 @@ export class SignUpComponent implements OnInit {
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{6,10}$') ]],
       password2: ['', [Validators.required,
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{6,10}$') ]],
+      gender: ['', [Validators.required,
+        Validators.pattern('^M$') ]],
       username: ['', Validators.required],
     });
   }
 
   checkUsername(field: string, url: string) {
-    this.signupApi.login(field, url).subscribe((data: boolean) => {
+    const httpOptions = new HttpHeaders({
+        'Content-Type':  'application/json',
+        'params': '{"username":"' + field + '"}'
+      });
+    alert(JSON.stringify(httpOptions));
+    this.signupApi.postRequestWithParameters(field, url, httpOptions).subscribe((data: boolean) => {
       console.log('Username: ' + this.user.surname );
       /*this.router.navigate(['/user/auction']);*/
       alert(data);

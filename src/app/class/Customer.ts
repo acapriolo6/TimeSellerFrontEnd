@@ -11,6 +11,7 @@ export class Customer {
   surname: string;
   username: string;
   address: Address;
+  gender: string;
 
   constructor() {
     this.address = new Address();
