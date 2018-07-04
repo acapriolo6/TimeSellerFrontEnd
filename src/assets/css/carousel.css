@@ -46,6 +46,10 @@ img{
   margin-top: 10%;
   padding: 3%;
 }
+
+.mt-50{
+  margin-top: 40%;
+}
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
@@ -184,6 +188,7 @@ agm-map {
     bottom: 0px;
     margin-bottom: 0px;
   }
+
 }
 
 @media (min-width: 62em) {

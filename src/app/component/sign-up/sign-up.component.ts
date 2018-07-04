@@ -20,6 +20,7 @@ export class SignUpComponent implements OnInit {
   model: any = {};
   submitted = false;
   password2 = '';
+  loading = false;
 
   constructor( private signupApi: SignupApiService, private formBuilder: FormBuilder, private router: Router) {
     this.createForm();
@@ -42,16 +43,27 @@ export class SignUpComponent implements OnInit {
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{6,10}$') ]],
       password2: ['', [Validators.required,
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{6,10}$') ]],
+      username: ['', Validators.required],
     });
   }
 
+  checkUsername(field: string, url: string) {
+    this.signupApi.login(field, url).subscribe((data: boolean) => {
+      console.log('Username: ' + this.user.surname );
+      /*this.router.navigate(['/user/auction']);*/
+      alert(data);
+    }, (error: Error) =>{
+      alert(error.message);
+    });
+  }
 
   onSubmit() {
-    if ((this.angularForm.pristine || this.angularForm.invalid) || (this.password2 !== this.user.password) ) {
+    if ((this.angularForm.pristine || this.angularForm.invalid) || (this.password2 !== this.user.password)  ) {
       this.submitted = true;
     } else {
       this.submitted = false;
-      this.saveUser();
+      this.loading = true;
+      /*this.saveUser();*/
     }
   }
 
@@ -69,6 +81,7 @@ export class SignUpComponent implements OnInit {
     this.signupApi.addElement(this.user, '/user/saveCustomer').subscribe((data: Customer) => {
       console.log('Username: ' + this.user.surname );
       /*this.router.navigate(['/user/auction']);*/
+      this.loading = false;
     });
   }
 

@@ -2,184 +2,219 @@
   <div class="row justify-content-center">
     <div class="col-12">
       <div class="row">
-        <div class="col-12 col-md-6 offset-md-3">
+        <div class="col-12" *ngIf="!loading">
           <form [formGroup]="angularForm" novalidate>
-            <section class="section">
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <label>Surname:</label>
-                    <input class="form-control" formControlName="surname" type="text" [(ngModel)]="user.surname">
-                  </div>
-                  <div *ngIf="submitted && angularForm.controls['surname'].invalid" class="alert alert-danger">
-                    <div *ngIf="angularForm.controls['surname'].errors.required">
-                      Surname is required.
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <section class="section mr-md-5">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Surname:</label>
+                        <input class="form-control" formControlName="surname" type="text" [(ngModel)]="user.surname">
+                      </div>
+                      <div *ngIf="submitted && angularForm.controls['surname'].invalid" class="alert alert-danger">
+                        <div *ngIf="angularForm.controls['surname'].errors.required">
+                          Surname is required.
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Name:</label>
+                        <input class="form-control" formControlName="name" type="text" [(ngModel)]="user.name">
+                      </div>
+                      <div *ngIf="submitted && angularForm.controls['name'].invalid" class="alert alert-danger">
+                        <div *ngIf="angularForm.controls['name'].errors.required">
+                          Name is required.
+                        </div>
+                        <div *ngIf="angularForm.controls['name'].errors.minlength">
+                          minLength is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Fiscal Code:</label>
+                        <input class="form-control" formControlName="fiscalCode" type="text" [(ngModel)]="user.fiscalCode">
+                      </div>
+                      <div *ngIf="submitted && angularForm.controls['fiscalCode'].invalid" class="alert alert-danger">
+                        <div *ngIf="angularForm.controls['fiscalCode'].errors.required">
+                          Fiscal Code is required.
+                        </div>
+                        <div *ngIf="angularForm.controls['fiscalCode'].errors.pattern">
+                          Fiscal Code isn't correct.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Date of Birth:</label>
+                        <input class="form-control" formControlName="dateOfBirth" type="date" [(ngModel)]="user.dateOfBirth">
+                      </div>
+                      <div *ngIf="submitted && angularForm.controls['dateOfBirth'].invalid" class="alert alert-danger">
+                        <div *ngIf="angularForm.controls['dateOfBirth'].errors.required">
+                          Date is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Street:</label>
+                        <input class="form-control" formControlName="street" type="text" [(ngModel)]="user.address.street">
+                      </div>
+                      <div *ngIf="submitted && angularForm.controls['street'].invalid" class="alert alert-danger">
+                        <div *ngIf="angularForm.controls['street'].errors.required">
+                          Address is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label>House Number:</label>
+                        <input class="form-control" formControlName="houseNumber" type="number" [(ngModel)]="user.address.houseNumber">
+                      </div>
+                      <div *ngIf="submitted && angularForm.controls['houseNumber'].invalid" class="alert alert-danger">
+                        <div *ngIf="angularForm.controls['houseNumber'].errors.required">
+                          Is required.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label>Zip Code:</label>
+                        <input class="form-control" formControlName="zipCode" type="number" [(ngModel)]="user.address.zipCode">
+                      </div>
+                      <div *ngIf="submitted && angularForm.controls['zipCode'].invalid" class="alert alert-danger">
+                        <div *ngIf="angularForm.controls['zipCode'].errors.required">
+                          Is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
               </div>
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <label>Name:</label>
-                    <input class="form-control" formControlName="name" type="text" [(ngModel)]="user.name">
-                  </div>
-                  <div *ngIf="submitted && angularForm.controls['name'].invalid" class="alert alert-danger">
-                    <div *ngIf="angularForm.controls['name'].errors.required">
-                      Name is required.
+              <div class="col-12 col-md-6">
+                <section class="section">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Iban:</label>
+                        <input class="form-control" formControlName="iban" type="text" [(ngModel)]="user.iban">
+                      </div>
+                      <div *ngIf="submitted && angularForm.controls['iban'].invalid" class="alert alert-danger">
+                        <div *ngIf="angularForm.controls['iban'].errors.required">
+                          Iban is required.
+                        </div>
+                        <div *ngIf="angularForm.controls['iban'].errors.pattern">
+                          Iban not correct.
+                        </div>
+                      </div>
                     </div>
-                    <div *ngIf="angularForm.controls['name'].errors.minlength">
-                      minLength is required.
+                  </div>
+                </section>
+                <section class="section">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label><label class="text-danger">*</label> Phone:</label>
+                        <input class="form-control" type="number" [(ngModel)]="user.phone">
+                      </div>
                     </div>
                   </div>
-                </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>E-mail:</label>
+                        <input class="form-control" formControlName="email" type="text" [(ngModel)]="user.email">
+                      </div>
+                      <div *ngIf="submitted && angularForm.controls['email'].invalid" class="alert alert-danger">
+                        <div *ngIf="angularForm.controls['email'].errors.required">
+                          E-mail is required.
+                        </div>
+                        <div *ngIf="angularForm.controls['email'].errors.email">
+                          E-mail is not correct.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Username:</label>
+                        <input class="form-control" formControlName="username" type="text" (blur)="checkUsername(user.username, '/user/usernameExists/' + user.username)" [(ngModel)]="user.username">
+                      </div>
+                      <div *ngIf="submitted && angularForm.controls['username'].invalid"   class="alert alert-danger">
+                        <div *ngIf="angularForm.controls['username'].errors.required">
+                          Username is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label>Password:</label>
+                        <input class="form-control" formControlName="password" type="text" [(ngModel)]="user.password">
+                      </div>
+                      <div *ngIf="angularForm.controls['password'].invalid && ( angularForm.controls['password'].touched)" class="alert alert-danger">
+                        <div *ngIf="angularForm.controls['password'].errors.required">
+                          Is required.
+                        </div>
+                        <div *ngIf="angularForm.controls['password'].errors.pattern">
+                          The password must have with at least a Upper Case letter, a number and a special caracters between #$^+=!*()@%&. Min length 6 max lenght 10.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label>Password di conferma:</label>
+                        <input class="form-control" formControlName="password2" type="text" [(ngModel)]="password2">
+                      </div>
+                      <div *ngIf="submitted && angularForm.controls['password2'].invalid" class="alert alert-danger">
+                        <div *ngIf="angularForm.controls['password2'].errors.required">
+                          Is required.
+                        </div>
+                        <div *ngIf="this.password2 !== this.user.password">
+                          Password not equals.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
               </div>
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <label>Fiscal Code:</label>
-                    <input class="form-control" formControlName="fiscalCode" type="text" [(ngModel)]="user.fiscalCode">
-                  </div>
-                  <div *ngIf="submitted && angularForm.controls['fiscalCode'].invalid" class="alert alert-danger">
-                    <div *ngIf="angularForm.controls['fiscalCode'].errors.required">
-                      Fiscal Code is required.
-                    </div>
-                    <div *ngIf="angularForm.controls['fiscalCode'].errors.pattern">
-                      Fiscal Code isn't correct.
-                    </div>
-                  </div>
-                </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
               </div>
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <label>Date of Birth:</label>
-                    <input class="form-control" formControlName="dateOfBirth" type="date" [(ngModel)]="user.dateOfBirth">
-                  </div>
-                  <div *ngIf="submitted && angularForm.controls['dateOfBirth'].invalid" class="alert alert-danger">
-                    <div *ngIf="angularForm.controls['dateOfBirth'].errors.required">
-                      Date is required.
-                    </div>
-                  </div>
-                </div>
+            </div>
+            <div class="row mt-5">
+              <div class="col-12">
+                <button type="submit"
+                        class="btn btn-success btn-lg offset-5" (click)="onSubmit()">
+                  Register
+                </button>
               </div>
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <label>Street:</label>
-                    <input class="form-control" formControlName="street" type="text" [(ngModel)]="user.address.street">
-                  </div>
-                  <div *ngIf="submitted && angularForm.controls['street'].invalid" class="alert alert-danger">
-                    <div *ngIf="angularForm.controls['street'].errors.required">
-                      Address is required.
-                    </div>
-                  </div>
-                </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-12">
+                <p><label class="text-danger">* </label> Optional field</p>
               </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group">
-                    <label>House Number:</label>
-                    <input class="form-control" formControlName="houseNumber" type="number" [(ngModel)]="user.address.houseNumber">
-                  </div>
-                  <div *ngIf="submitted && angularForm.controls['houseNumber'].invalid" class="alert alert-danger">
-                    <div *ngIf="angularForm.controls['houseNumber'].errors.required">
-                      Is required.
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label>Zip Code:</label>
-                    <input class="form-control" formControlName="zipCode" type="number" [(ngModel)]="user.address.zipCode">
-                  </div>
-                  <div *ngIf="submitted && angularForm.controls['zipCode'].invalid" class="alert alert-danger">
-                    <div *ngIf="angularForm.controls['zipCode'].errors.required">
-                      Is required.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <section class="section">
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <label>Iban:</label>
-                    <input class="form-control" formControlName="iban" type="text" [(ngModel)]="user.iban">
-                  </div>
-                  <div *ngIf="submitted && angularForm.controls['iban'].invalid" class="alert alert-danger">
-                    <div *ngIf="angularForm.controls['iban'].errors.required">
-                      Iban is required.
-                    </div>
-                    <div *ngIf="angularForm.controls['iban'].errors.pattern">
-                      Iban not correct.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <section class="section">
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <label>Phone:</label>
-                    <input class="form-control" type="number" [(ngModel)]="user.phone">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12">
-                  <div class="form-group">
-                    <label>E-mail:</label>
-                    <input class="form-control" formControlName="email" type="text" [(ngModel)]="user.email">
-                  </div>
-                  <div *ngIf="submitted && angularForm.controls['email'].invalid" class="alert alert-danger">
-                    <div *ngIf="angularForm.controls['email'].errors.required">
-                      E-mail is required.
-                    </div>
-                    <div *ngIf="angularForm.controls['email'].errors.email">
-                      E-mail is not correct.
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group">
-                    <label>Password:</label>
-                    <input class="form-control" formControlName="password" type="text" [(ngModel)]="user.password">
-                  </div>
-                  <div *ngIf="angularForm.controls['password'].invalid && ( angularForm.controls['password'].touched)" class="alert alert-danger">
-                    <div *ngIf="angularForm.controls['password'].errors.required">
-                      Is required.
-                    </div>
-                    <div *ngIf="angularForm.controls['password'].errors.pattern">
-                      The password must have with at least a Upper Case letter, a number and a special caracters between #$^+=!*()@%&. Min length 6 max lenght 10.
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label>Password di conferma:</label>
-                    <input class="form-control" formControlName="password2" type="text" [(ngModel)]="password2">
-                  </div>
-                  <div *ngIf="submitted && angularForm.controls['password2'].invalid" class="alert alert-danger">
-                    <div *ngIf="angularForm.controls['password2'].errors.required">
-                      Is required.
-                    </div>
-                    <div *ngIf="this.password2 !== this.user.password">
-                      Password not equals.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <button type="submit"
-                     class="btn btn-success" (click)="onSubmit()">
-              Save
-            </button>
+            </div>
           </form>
+        </div>
+        <div class="col-3 offset-4 justify-content-center mt-50" *ngIf="loading">
+          <app-loading-animation></app-loading-animation>
         </div>
       </div>
     </div>

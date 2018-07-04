@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Banner} from '../interface/banner';
 import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {Customer} from '../class/Customer';
 import {ModeAuction} from '../class/ModeAuction';
+import {RequestOptions} from 'http';
+import {RequestOptionsArgs} from '@angular/http';
+import {Params} from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -44,5 +47,11 @@ export class SignupApiService {
     return this.httpClient.post(environment.baseServiceUrl + url, element, httpOptions);
 
     /*return this.httpClient.post<Customer>(this.serviceSaveUserUrl, user, httpOptions);*/
+  }
+
+  postRequestWithParameters(element: any, url: string, option: HttpHeaders) {
+    return this.httpClient.post(environment.baseServiceUrl + url, element, {
+      headers: option
+    });
   }
 }
