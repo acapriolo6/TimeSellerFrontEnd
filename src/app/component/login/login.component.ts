@@ -63,13 +63,17 @@ export class LoginComponent implements OnInit {
     /*alert('Dati pre invio: ' + this.user.username + ' ' + this.user.password )*/
     this.sendDataApi.login(this.user, '/user/login').subscribe(data => {
     // this.sendDataApi.login(this.rispostaDTO, '/user/login').subscribe(data => {
-      alert('Login avvenuto con successo!' + JSON.stringify(data));
+    //   alert('Login avvenuto con successo!' + JSON.stringify(data));
       this.notification.send(this.user);
       // this.notification.send(this.rispostaDTO);
       this.router.navigate(['/user/auction']);
     }, error => {
-      alert('Errore Login ' + JSON.stringify(error));
+      alert('Errore Login ');
     }  );
+  }
+
+  goToRegisterPage(){
+    this.router.navigate(['/signup']);
   }
 
   ngOnInit() {
