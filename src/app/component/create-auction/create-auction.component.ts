@@ -27,6 +27,10 @@ export class CreateAuctionComponent implements OnInit {
   routerP: Router;
   constructor(private sendDataApi: SignupApiService, private formBuilder: FormBuilder, private router: Router) {
     this.routerP = this.router;
+    if (!localStorage.getItem('login')) {
+      this.router.navigate(['/login']);
+      localStorage.setItem('nextPage', this.router.routerState.snapshot.url);
+    }
   }
 
   ngOnInit() {

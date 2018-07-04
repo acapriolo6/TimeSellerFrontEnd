@@ -3,7 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Customer} from '../../class/Customer';
 import {NotificationService} from '../../service/notification.service';
 import {SignupApiService} from '../../service/signup-api.service';
-import {RispostaDTO} from "../../class/RispostaDTO";
+import {RispostaDTO} from '../../class/RispostaDTO';
+import {url} from 'inspector';
 
 @Component({
   selector: 'app-login',
@@ -14,10 +15,12 @@ export class LoginComponent implements OnInit {
 
 
   user = new Customer();
-  //rispostaDTO = new RispostaDTO();
+  /*rispostaDTO = new RispostaDTO();*/
   error = true;
+  url = '';
 
-  constructor(private  route: ActivatedRoute, private notification: NotificationService, private sendDataApi: SignupApiService, private router: Router) {
+  constructor(private  route: ActivatedRoute, private notification: NotificationService,
+              private sendDataApi: SignupApiService, private router: Router) {
     this.error = true;
     /*this.username = this.route.snapshot.params['username'];
     if (this.route.snapshot.params['username']) {
@@ -40,6 +43,8 @@ export class LoginComponent implements OnInit {
       this.error = true;
     }*/
     console.log('aooooooooo');
+    this.url = (localStorage.getItem('nextPage') !== null) ? localStorage.getItem('nextPage')  : '/createAuction';
+    localStorage.removeItem('nextPage');
   }
 
   controlForm() {
@@ -66,14 +71,10 @@ export class LoginComponent implements OnInit {
     //   alert('Login avvenuto con successo!' + JSON.stringify(data));
       this.notification.send(this.user);
       // this.notification.send(this.rispostaDTO);
-      this.router.navigate(['/user/auction']);
+      this.router.navigate([this.url]);
     }, error => {
       alert('Errore Login ');
     }  );
-  }
-
-  goToRegisterPage(){
-    this.router.navigate(['/signup']);
   }
 
   ngOnInit() {

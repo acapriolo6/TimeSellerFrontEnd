@@ -6,7 +6,8 @@ import {ApiService} from '../../service/api.service';
 import {SignupApiService} from '../../service/signup-api.service';
 import {error} from 'util';
 import {e} from '@angular/core/src/render3';
-import {Customer} from "../../class/Customer";
+import {Customer} from '../../class/Customer';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sale-details',
@@ -17,7 +18,12 @@ export class SaleDetailsComponent implements OnInit {
 
   listaAste: ModeAuction[];
   c: Customer = JSON.parse(localStorage.getItem('login'));
-  constructor(private api: SignupApiService) { }
+  constructor(private api: SignupApiService, private router: Router) {
+    if (!localStorage.getItem('login')) {
+      this.router.navigate(['/login']);
+      localStorage.setItem('nextPage', this.router.routerState.snapshot.url);
+    }
+  }
 
   getAuction() {
     this.api.getAuction(4, this.getAuctionCallSuccess, this.getAuctionCallError);
@@ -33,7 +39,7 @@ export class SaleDetailsComponent implements OnInit {
   }
 
   getAuctionProva() {
-    alert(this.c.username);
+    /*alert(this.c.username);*/
     this.api.getAuctionProva(this.c.username).subscribe((data: ModeAuction[]) => {
         this.listaAste = data;
       },

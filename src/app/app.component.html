@@ -3,7 +3,7 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand mtx-white" href="#">Example</a>
+    <a class="navbar-brand mtx-white" href="#" style="padding: 0px; height: 40px;width: 100px;"><img style="padding: 0px;" src="../assets/img/logo2.png"> </a>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
@@ -13,18 +13,17 @@
           <a class="nav-link mtx-white" routerLink={{provaRouter()}} >Auction</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link mtx-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{profile.toLocaleUpperCase()}}</a>
+          <a class="nav-link mtx-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{profile}}</a>
           <div class="dropdown-menu mtx-bg-blu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item mtx-white" *ngIf="user == null" routerLink="login" >Sign In</a>
-            <a class="dropdown-item mtx-white" *ngIf="user == null" routerLink="signup">Sign Up</a>
             <!--<a class="dropdown-item mtx-white" *ngIf="user == null" routerLink="admin">Admin</a>-->
             <a class="dropdown-item mtx-white" *ngIf="user != null" routerLink="user/auction">Aste create</a>
-            <a class="dropdown-item mtx-white" href="#" (click)="signUpFunction()" *ngIf="user != null">Sign Up</a>
-            <a class="dropdown-item mtx-white" *ngIf="user == null" routerLink="getUsersList" href="#" (click)="admin()">Admin</a>
+            <a class="dropdown-item mtx-white" href="#" (click)="logoutFunction()" *ngIf="user != null">Logout</a>
+            <a class="dropdown-item mtx-white" *ngIf="user != null && user.username === 'admin'" routerLink="getUsersList" href="#" (click)="admin()">Admin</a>
           </div>
         </li>
       </ul>
-      <form class="form-inline mt-2 mt-md-0">
+      <form class="form-inline mt-2 mt-md-0" *ngIf="false">
         <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0 mtx-white" type="submit">Search</button>
       </form>

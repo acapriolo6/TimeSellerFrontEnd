@@ -68,7 +68,7 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/admin']);
   }
 
-  signUpFunction() {
+  logoutFunction() {
     alert('Utente disconnesso!');
     localStorage.clear();
     this.user = null;
