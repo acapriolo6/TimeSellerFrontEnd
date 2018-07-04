@@ -41,7 +41,11 @@ img{
   max-height: 100%;
 }
 
-
+.section{
+  border-style: solid;
+  margin-top: 10%;
+  padding: 3%;
+}
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 

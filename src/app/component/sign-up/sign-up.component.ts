@@ -4,6 +4,7 @@ import {Customer} from '../../class/Customer';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Address} from '../../class/Address';
 import {Router} from '@angular/router';
+import {s} from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,62 +13,63 @@ import {Router} from '@angular/router';
 })
 export class SignUpComponent implements OnInit {
 
-  password2: String;
-  user: Customer = new Customer();
-
-  registerForm: FormGroup;
-  iban: FormControl;
+  user = new Customer();
+  angularForm = new FormGroup ({
+    name: new FormControl()
+  });
+  model: any = {};
   submitted = false;
-  state = false;
+  password2 = '';
 
+  constructor( private signupApi: SignupApiService, private formBuilder: FormBuilder, private router: Router) {
+    this.createForm();
+  }
 
-  constructor( private signupApi: SignupApiService, private formBuilder: FormBuilder, private router: Router) { }
-
-  ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      surname: ['', Validators.required],
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      dateOfBirth: ['', Validators.required],
-      fiscalCode: ['', Validators.required],
-      iban: new FormControl('', [
-        Validators.required,
-        Validators.pattern('^[A-Z]{2}$')
-      ]),
-      phone: ['', Validators.required],
-      username: ['', Validators.required],
-      street: ['', Validators.required],
-      password2: ['', [Validators.required, Validators.minLength(6)], Validators.bind(this.user.password)],
-      houseNumber: ['', Validators.required],
-      zipCode: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]]
+  createForm() {
+    this.angularForm = this.formBuilder.group({
+      name: ['', [ Validators.required]],
+      surname: ['', [ Validators.required]],
+      fiscalCode: ['', [ Validators.required, Validators.minLength(16),
+        Validators.pattern('^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$')]],
+      dateOfBirth: ['', [ Validators.required]],
+      street: ['', [ Validators.required]],
+      houseNumber: ['', [ Validators.required]],
+      zipCode: ['', [ Validators.required]],
+      iban: ['', [ Validators.required,
+        Validators.pattern('^IT\\d{2}[ ][a-zA-Z]\\d{3}[ ]\\d{4}[ ]\\d{4}[ ]\\d{4}[ ]\\d{4}[ ]\\d{3}|IT\\d{2}[a-zA-Z]\\d{22}$')]],
+      email: ['', [Validators.required, Validators.email ]],
+      password: ['', [Validators.required,
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{6,10}$') ]],
+      password2: ['', [Validators.required,
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{6,10}$') ]],
     });
   }
 
-  get f() { return this.registerForm.controls; }
 
   onSubmit() {
-    this.submitted = true;
-    console.log('Ecco: ' + this.submitted + ' - ' + this.registerForm.invalid + ' - ' );
-    // stop here if form is invalid
-    if (this.registerForm.invalid) {
-      alert('NON Form valida');
-      return;
+    if ((this.angularForm.pristine || this.angularForm.invalid) || (this.password2 !== this.user.password) ) {
+      this.submitted = true;
     } else {
-      /*this.changeState(true);*/
-      alert('Form valida');
+      this.submitted = false;
+      this.saveUser();
     }
   }
+
+  ngOnInit() {
+  }
+
+  checkUser() {
+    this.signupApi.login(this.user.username, '/user/checkUsername').subscribe((data: boolean) => {
+      console.log('Username: ' + this.user.surname );
+    });
+  }
+
 
   saveUser() {
     this.signupApi.addElement(this.user, '/user/saveCustomer').subscribe((data: Customer) => {
       console.log('Username: ' + this.user.surname );
-      this.router.navigate(['/user/auction']);
+      /*this.router.navigate(['/user/auction']);*/
     });
-  }
-
-  changeState(state: boolean) {
-    this.state = state;
   }
 
 
