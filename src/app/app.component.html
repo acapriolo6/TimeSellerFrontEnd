@@ -17,8 +17,10 @@
           <div class="dropdown-menu mtx-bg-blu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item mtx-white" *ngIf="user == null" routerLink="login" >Sign In</a>
             <a class="dropdown-item mtx-white" *ngIf="user == null" routerLink="signup">Sign Up</a>
+            <!--<a class="dropdown-item mtx-white" *ngIf="user == null" routerLink="admin">Admin</a>-->
             <a class="dropdown-item mtx-white" *ngIf="user != null" routerLink="user/auction">Aste create</a>
             <a class="dropdown-item mtx-white" href="#" (click)="signUpFunction()" *ngIf="user != null">Sign Up</a>
+            <a class="dropdown-item mtx-white" *ngIf="user == null" routerLink="getUsersList" href="#" (click)="admin()">Admin</a>
           </div>
         </li>
       </ul>

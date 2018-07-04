@@ -21,6 +21,7 @@ import { SaleDetailsComponent } from './component/sale-details/sale-details.comp
 import {CookieService} from 'ngx-cookie-service';
 import { GoogleMapsComponent } from './component/pageComponent/google-maps/google-maps.component';
 import { LoadingAnimationComponent } from './component/pageComponent/loading-animation/loading-animation.component';
+import { AdminPageComponent } from './component/admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { LoadingAnimationComponent } from './component/pageComponent/loading-ani
     SignUpComponent,
     SaleDetailsComponent,
     GoogleMapsComponent,
-    LoadingAnimationComponent
+    LoadingAnimationComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,
