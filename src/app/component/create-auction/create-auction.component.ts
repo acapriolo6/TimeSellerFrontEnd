@@ -4,6 +4,7 @@ import {Customer} from '../../class/Customer';
 import {ModeAuction, StateOfAuction} from '../../class/ModeAuction';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {Address} from '../../class/Address';
 
 
 
@@ -21,6 +22,7 @@ export class CreateAuctionComponent implements OnInit {
   minutes: number;
   hours: number;
   state = false;
+  position: Address;
 
   myDate: Date;
 
@@ -84,6 +86,9 @@ export class CreateAuctionComponent implements OnInit {
     }  );
   }
 
+  setPosition(address: Address ) {
+    this.auction.location = address;
+  }
 
   prova() {
     setTimeout(() => {

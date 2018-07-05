@@ -46,12 +46,12 @@ export class GoogleMapsComponent implements OnInit {
     }
   }
 
-
   geocodeLatLng(geocoder, map, infowindow, mapProp) {
     const latlng = map.center;
     const address = new Address();
     address.latitude = mapProp.center.lat();
     address.longitude = mapProp.center.lng();
+    this.positionSend.emit(address);
     geocoder.geocode({'location': latlng}, function(results, status) {
       if (status === 'OK') {
         console.log(JSON.stringify(results[0]).toString());
