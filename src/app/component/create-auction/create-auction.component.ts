@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {SignupApiService} from '../../service/signup-api.service';
 import {Customer} from '../../class/Customer';
-import {ModeAuction} from '../../class/ModeAuction';
+import {ModeAuction, StateOfAuction} from '../../class/ModeAuction';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
@@ -63,6 +63,7 @@ export class CreateAuctionComponent implements OnInit {
       addMinutesHours = this.hours * 60 * 60 * 1000;
       addMinutesHours += this.minutes * 60000;
       this.auction.seller = JSON.parse(localStorage.getItem('login'));
+      this.auction.stateOfAuction = StateOfAuction.STARTED;
       this.auction.countDownTimeEnd = new Date(this.auction.countDownTimeEnd.getTime() + addMinutesHours);
     }
   }

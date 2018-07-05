@@ -23,7 +23,7 @@ export class SignupApiService {
 
   serviceBaseUrl: String = environment.baseServiceUrl + '/user';
   serviceSaveUserUrl: string = this.serviceBaseUrl + '/saveCustomer';
-  serviceGetAuction: string = this.serviceBaseUrl + '/getAuction';
+  serviceGetAuction: string = this.serviceBaseUrl + '/getClosedAuctions';
 
   constructor( private httpClient: HttpClient) {
 

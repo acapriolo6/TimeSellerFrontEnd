@@ -1,5 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import { } from '@types/googlemaps';
+import {Address} from '../../../class/Address';
 
 @Component({
   selector: 'app-google-maps',
@@ -10,6 +11,7 @@ export class GoogleMapsComponent implements OnInit {
 
   @ViewChild('gmap') gmapElement: any;
   map: google.maps.Map;
+  @Output() positionSend = new EventEmitter<Address>();
 
   locationError = true;
   constructor() { }
@@ -24,22 +26,17 @@ export class GoogleMapsComponent implements OnInit {
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         this.locationError = false;
-        const marker = new google.maps.Marker({
-          position: mapProp.center,
-          title: 'You are here'
-        });
-// To add the marker to the map, call setMap();
         this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
         const geocoder = new google.maps.Geocoder;
         const infowindow = new google.maps.InfoWindow;
-        marker.setMap(this.map);
-        this.geocodeLatLng(geocoder, this.map, infowindow);
+        this.geocodeLatLng(geocoder, this.map, infowindow, mapProp);
         console.log('mappa creata');
       }, error1 => {
         this.locationError = true;
       });
     } else {
       console.log('Sono nel else');
+      /* da completare*/
       const mapProp = {
         center: new google.maps.LatLng(0, 0),
         zoom: 15,
@@ -50,13 +47,16 @@ export class GoogleMapsComponent implements OnInit {
   }
 
 
-  geocodeLatLng(geocoder, map, infowindow) {
+  geocodeLatLng(geocoder, map, infowindow, mapProp) {
     const latlng = map.center;
+    const address = new Address();
+    address.latitude = mapProp.center.lat();
+    address.longitude = mapProp.center.lng();
     geocoder.geocode({'location': latlng}, function(results, status) {
       if (status === 'OK') {
         console.log(JSON.stringify(results[0]).toString());
 
-        console.log(JSON.stringify(results[0]));
+        console.log(JSON.stringify(results[0].formatted_address));
         if (results[0]) {
           const marker = new google.maps.Marker({
             position: latlng,
