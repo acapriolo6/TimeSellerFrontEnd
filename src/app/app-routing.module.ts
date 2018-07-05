@@ -13,7 +13,7 @@ import {AdminPageComponent} from './component/admin-page/admin-page.component';
 const routes: Routes = [
   {path: 'user/:username/:password/:age', component: UserDetailComponent},
   {path: 'user/auction', component: SaleDetailsComponent},
-  {path: 'signup', component: SignUpComponent},
+  {path: 'user/signup', component: SignUpComponent},
   {path: 'createAuction', component: CreateAuctionComponent},
   {path: 'login', component: LoginComponent},
   {path: 'index', component: IndexComponent},
