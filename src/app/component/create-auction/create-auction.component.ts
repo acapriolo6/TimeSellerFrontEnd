@@ -39,7 +39,7 @@ export class CreateAuctionComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       title: ['', Validators.required],
       startPrice: ['', Validators.required],
-      description: ['', [Validators.required]],
+      description: [''],
       hours: ['', [Validators.required, ]],
       minutes: ['', Validators.required]
     });
