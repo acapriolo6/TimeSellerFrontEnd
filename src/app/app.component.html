@@ -18,8 +18,8 @@
             <a class="dropdown-item mtx-white" *ngIf="user == null" routerLink="login" >Sign In</a>
             <!--<a class="dropdown-item mtx-white" *ngIf="user == null" routerLink="admin">Admin</a>-->
             <a class="dropdown-item mtx-white" *ngIf="user != null" routerLink="user/auction">Aste create</a>
+            <a class="dropdown-item mtx-white" *ngIf="user != null && user.username === 'admin'" routerLink="user/admin">Admin</a>
             <a class="dropdown-item mtx-white" href="#" (click)="logoutFunction()" *ngIf="user != null">Logout</a>
-            <a class="dropdown-item mtx-white" *ngIf="user != null && user.username === 'admin'" routerLink="getUsersList" href="#" (click)="admin()">Admin</a>
           </div>
         </li>
       </ul>

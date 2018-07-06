@@ -62,11 +62,11 @@ export class AppComponent implements OnInit {
     }
   }
 
-  admin() {
+  /*admin() {
     this.user = null;
     this.profile = 'Admin';
     this.router.navigate(['/admin']);
-  }
+  }*/
 
   logoutFunction() {
     alert('Utente disconnesso!');
