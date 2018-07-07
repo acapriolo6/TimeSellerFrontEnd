@@ -12,7 +12,7 @@
             <h5 class="card-title">{{card.title}} </h5>
             <p class="card-text">Base asta: {{card.startPrice}} €</p>
             <p class="card-text">Scade il: {{card.countDownTimeEnd | date :"dd/MM/yyyy HH:mm"}}</p>
-            <p class="card-text" [id]="'txt' + i">{{card.countDown}}</p>
+            <p><countdown-timer (zeroTrigger)="closeAuction(card.title)" [end]="card.countDownTimeEnd | date : 'yyyy-MM-dd HH:mm'"></countdown-timer></p>
             <!--<div>
               <label>value: </label> {{countDown |async}}
             </div>

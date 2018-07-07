@@ -24,6 +24,7 @@ import { LoadingAnimationComponent } from './component/pageComponent/loading-ani
 import { AdminPageComponent } from './component/admin-page/admin-page.component';
 import { OffertPageComponent } from './component/offert-page/offert-page.component';
 import { CountdownModule } from 'ngx-countdown';
+import {CountdownTimerModule} from 'ngx-countdown-timer';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { CountdownModule } from 'ngx-countdown';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCKY5Y_1R5p8W1KU-KUm2J3k43W4_eWFAk',
       libraries: ['node_modules/@agm'],
-    })
+    }),
+    CountdownTimerModule.forRoot()
   ],
   providers: [
     CookieService
