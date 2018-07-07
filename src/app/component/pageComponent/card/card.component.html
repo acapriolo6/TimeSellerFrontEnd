@@ -12,6 +12,16 @@
             <h5 class="card-title">{{card.title}} </h5>
             <p class="card-text">Base asta: {{card.startPrice}} €</p>
             <p class="card-text">Scade il: {{card.countDownTimeEnd | date :"dd/MM/yyyy HH:mm"}}</p>
+            <p class="card-text" [id]="'txt' + i">{{card.countDown}}</p>
+            <!--<div>
+              <label>value: </label> {{countDown |async}}
+            </div>
+            <div>
+              <button (click)="startCountdownTimer()" class="btn btn-success">Start</button>
+            </div>-->
+            <!--<countdown (start)="onStart()" [config]="{leftTime: getSec(card.countDownTimeEnd)}">剩余时间：$!h!时$!m!分$!s-ext!秒"</countdown>-->
+            <!--<countdown [config]="{leftTime: getSec(card.countDownTimeEnd), clock: ['d', 100, 2, 'h', 100, 2, 'm', 60, 2, 's', 60, 2, 'u', 10, 1]}"></countdown>-->
+            <!--<countdown [config]="{leftTime: 1531258778108, clock: ['d', 100, 2, 'h', 100, 2, 'm', 60, 2, 's', 60, 2, 'u', 10, 1]}"></countdown>-->
             <a routerLink='/offers/bid' class="btn btn-primary">Bids</a>
           </div>
         </div>

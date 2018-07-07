@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AppRoutingModule, RoutingModule} from './/app-routing.module';
+import {AppRoutingModule, RoutingModule} from './app-routing.module';
 import { MyFirstRouteComponent } from './component/my-first-route/my-first-route.component';
 import { IndexComponent } from './component/index/index.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
@@ -23,6 +23,7 @@ import { GoogleMapsComponent } from './component/pageComponent/google-maps/googl
 import { LoadingAnimationComponent } from './component/pageComponent/loading-animation/loading-animation.component';
 import { AdminPageComponent } from './component/admin-page/admin-page.component';
 import { OffertPageComponent } from './component/offert-page/offert-page.component';
+import { CountdownModule } from 'ngx-countdown';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { OffertPageComponent } from './component/offert-page/offert-page.compone
     AppRoutingModule,
     RoutingModule,
     HttpClientModule,
+    CountdownModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCKY5Y_1R5p8W1KU-KUm2J3k43W4_eWFAk',
       libraries: ['node_modules/@agm'],
