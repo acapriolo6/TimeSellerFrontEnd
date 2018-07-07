@@ -3,6 +3,7 @@ import {PENDING} from '@angular/forms/src/model';
 import {Address} from './Address';
 import {TimeItem} from './TimeItem';
 import {Sale} from './Sale';
+import {DataService} from "../service/store.service";
 
 export class ModeAuction extends Sale {
 
@@ -13,7 +14,6 @@ export class ModeAuction extends Sale {
   stateOfAuction: StateOfAuction;
   startPrice: number;
   title: string;
-
 
   constructor() {
     super();

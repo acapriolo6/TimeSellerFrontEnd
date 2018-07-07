@@ -9,6 +9,7 @@ import {CreateAuctionComponent} from './component/create-auction/create-auction.
 import {SignUpComponent} from './component/sign-up/sign-up.component';
 import {SaleDetailsComponent} from './component/sale-details/sale-details.component';
 import {AdminPageComponent} from './component/admin-page/admin-page.component';
+import {OffertPageComponent} from "./component/offert-page/offert-page.component";
 
 const routes: Routes = [
   {path: 'user/:username/:password/:age', component: UserDetailComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'createAuction', component: CreateAuctionComponent},
   {path: 'login', component: LoginComponent},
   {path: 'index', component: IndexComponent},
+  {path: 'offers/:bid', component: OffertPageComponent},
   {path: 'user/admin', component: AdminPageComponent},
   {path: '', component: IndexComponent},
   {path: '**', component: NotFoundComponent}

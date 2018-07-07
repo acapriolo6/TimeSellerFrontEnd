@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Banner} from '../../../interface/banner';
 import {ApiService} from '../../../service/api.service';
 import {Router} from '@angular/router';
+import {DataService} from "../../../service/store.service";
+import {ModeAuction} from "../../../class/ModeAuction";
 
 @Component({
   selector: 'app-card',
@@ -12,14 +14,17 @@ export class CardComponent implements OnInit {
 
   @Input() listaBanner: Banner[];
 
-  constructor(private route: Router, private apiService: ApiService) { }
+  /*get data():ModeAuction {
+    return this.dataService.serviceData;
+  }
+
+  set data(value: ModeAuction) {
+    this.dataService.serviceData = value;
+  }*/
+
+  constructor() { }
 
 
   ngOnInit() {
   }
-
-  convert() {
-
-  }
-
 }

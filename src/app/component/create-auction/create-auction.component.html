@@ -32,7 +32,7 @@
             <div class="col-12 col-md-6">
               <label>Prezzo di partenza</label>
               <div class="row">
-                <input type="number" [(ngModel)]="auction.startPrice"  formControlName="startPrice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.startPrice.errors }"/>
+                <input type="text" [(ngModel)]="auction.startPrice"  formControlName="startPrice" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.startPrice.errors }"/>
                 <div *ngIf="submitted && f.startPrice.errors" class="invalid-feedback">
                   <div *ngIf="f.startPrice.errors.required">Starting price is required</div>
                 </div>
@@ -121,7 +121,7 @@
           </div>
           <div class="row justify-content-center">
             <div class="col-12">
-              <label>Prezzo di partenza: {{auction.startPrice}}</label>
+              <label>Prezzo di partenza: {{auction.startPrice | currency:'€' :true}}</label>
             </div>
           </div>
           <div class="row justify-content-center">

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {StoreService} from '../../service/store.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -14,7 +13,7 @@ export class UserDetailComponent implements OnInit {
   age = 0;
   error = true;
 
-  constructor(private  route: ActivatedRoute, private data: StoreService) {
+  constructor(private  route: ActivatedRoute) {
     this.error = true;
     this.username = this.route.snapshot.params['username'];
     if (this.route.snapshot.params['username']) {
