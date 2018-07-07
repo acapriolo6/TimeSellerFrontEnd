@@ -17,5 +17,4 @@ export class Customer {
     this.address = new Address();
   }
 
-
 }
