@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
   /*rispostaDTO = new RispostaDTO();*/
   error = true;
   url = '';
-  animation = true;
+  animation = false;
+  errorMessage: String = null;
 
   constructor(private  route: ActivatedRoute, private notification: NotificationService,
               private sendDataApi: SignupApiService, private router: Router) {
@@ -66,16 +67,18 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.animation = true;
     /*alert('Dati pre invio: ' + this.user.username + ' ' + this.user.password )*/
     this.sendDataApi.login(this.user, '/user/login').subscribe(data => {
     // this.sendDataApi.login(this.rispostaDTO, '/user/login').subscribe(data => {
     //   alert('Login avvenuto con successo!' + JSON.stringify(data));
       this.notification.send(this.user);
-      localStorage.setItem('login', JSON.stringify(data));
+      this.animation = false;
       // this.notification.send(this.rispostaDTO);
       this.router.navigate([this.url]);
     }, error => {
-      alert('Errore Login ');
+      this.animation = false;
+      this.errorMessage = 'Errore Login ';
     }  );
   }
 

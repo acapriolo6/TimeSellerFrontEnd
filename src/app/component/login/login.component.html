@@ -4,6 +4,12 @@
       <form action="crea_asta.html" id="myForm" *ngIf="!animation">
         <div class="row justify-content-center">
           <div class="col-12 col-md-6">
+            <div class="container-fluid" *ngIf="errorMessage !== null">
+              <div class="justify-content-center mt-40 alert alert-danger display-4" >
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{errorMessage}}
+              </div>
+            </div>
             <div class="form-group">
               <label for="username">Username address</label>
               <input type="text" class="form-control" id="username" name="username" (keyup)="controlForm()" [(ngModel)]="user.username" aria-describedby="UsernameHelp" placeholder="Enter username">
