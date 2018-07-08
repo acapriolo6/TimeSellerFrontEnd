@@ -1,52 +1,45 @@
-<html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Asta</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>-->
-</head>
-
-
-
-
-<body style="background-image: url(download.jpg); background-size: cover">
-
-<div class="container mt-5"style="background-image: url(tempo.jpg); background-size: cover; height:500px">
-  <div class="row">
-    <div class="col sm-4 offset-8">
-      <div class="card-sm" style="width:365px;height: 500px; background-color:#9999e6; opacity: 0.85">
-        <div class="card-body">
-          <form class="form-group">
-            <label for="time"><strong>Tempo allo scadere:</strong></label>
-            <input type="time" class="form-control" id="time" name="time" value="{{bid.countDownTimeEnd}}">
-            <br>
-            <label for="prezzo"><strong>Prezzo:</strong></label>
-            <input type="number" class="form-control" value="{{bid.startPrice}}" placeholder="Prezzo" id="prezzo" name="prezzo">
-            <!--<label for="numerofferte"><strong>Numero offerte:</strong></label>
-            <input type="number" class="form-control" placeholder="Numero offerte" id="numerofferte" name="numerofferte">-->
-            <br>
-            <br>
-              <button type="submit" class="btn btn-dark btn-sm">FAI OFFERTA</button>
-              <input type="number">
-            <br>
-            <br>
-            <div align="center">
-              <a href="dvfvbgh" class="btn btn-info " role="button">Pagamento</a>
-            </div>
-          </form>
+<div class="container-fluid h-100 w-100">
+  <div class="container h-75 w-100" style="background-image: url(../../../assets/img/bid2.jpeg); background-size: cover; margin-top: 100px;">
+    <div class="row">
+      <div class="col sm-4 offset-8">
+        <div class="card-sm mh-75" style="background-color:#9999e6; opacity: 0.85">
+          <div class="card-body">
+            <form class="form-group">
+              <label><strong>Tempo allo scadere dell' asta:  </strong></label>
+              <countdown-timer class="h1 " (zeroTrigger)="disableBtn(auction)" [end]="auction.countDownTimeEnd | date : 'yyyy-MM-dd HH:mm'"></countdown-timer>
+              <br>
+              <label><strong>Prezzo di partenta:</strong></label>
+              <h3>{{auction.startPrice}} €</h3>
+              <br>
+              <div class="w-100" *ngIf="auction.bidder.length > 0">
+                <label><strong>Ultima offerta:  </strong></label>
+                <countdown-timer class="h1 " (zeroTrigger)="disableBtn(auction)" [end]="dateOfEnd() | date : 'yyyy-MM-dd HH:mm'"></countdown-timer>
+                <br>
+                <label><strong>Prezzo di partenta:</strong></label>
+                <h3>{{lastOffer()}} €</h3>
+              </div>
+              <div class="w-100" *ngIf="auction.bidder.length == 0">
+                <h4>Nessuna offerta! Fai la tua!</h4>
+              </div>
+              <br>
+              <br>
+              <input type="number" [(ngModel)]="bid.price" name="bidButton" [disabled]="sendRequest">
+              <button type="submit" class="btn btn-dark btn-sm" (click)="makeBid()" [disabled]="sendRequest">FAI OFFERTA</button>
+              <div class="container-fluid" *ngIf="errorMessage !== null">
+                <div class="justify-content-center alert alert-danger" >
+                  <button type="button" class="close" data-dismiss="alert" (click)="errorMessage = null">&times;</button>
+                  {{errorMessage}}
+                </div>
+              </div>
+              <br>
+              <br>
+              <div align="center">
+                <!--<a class="btn btn-info " role="button">Pagamento</a>-->
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-</body>
-</html>

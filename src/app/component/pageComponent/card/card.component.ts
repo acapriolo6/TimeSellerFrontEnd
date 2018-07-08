@@ -1,10 +1,10 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Banner} from '../../../interface/banner';
 import {CountdownComponent} from 'ngx-countdown';
-import {ModeAuction, StateOfAuction} from "../../../class/ModeAuction";
-import {environment} from "../../../../environments/environment";
-import {CloseauctionService} from "../../../service/closeauction.service";
-import {isBoolean} from "util";
+import {ModeAuction, StateOfAuction} from '../../../class/ModeAuction';
+import {environment} from '../../../../environments/environment';
+import {CloseauctionService} from '../../../service/closeauction.service';
+import {isBoolean} from 'util';
 const moment = require('moment');
 
 @Component({
@@ -102,17 +102,17 @@ export class CardComponent implements OnInit {
 
   disableBtn(i: number, card: ModeAuction) {
     // console.log('asta chiusa. Bid '+i);
-    if (card.stateOfAuction != StateOfAuction.CLOSED) {
-      document.getElementById("btnbid" + i).setAttribute("disabled", "disabled");
+    if (card.stateOfAuction !== StateOfAuction.CLOSED) {
+      document.getElementById('btnbid' + i).setAttribute('disabled', 'disabled');
       // console.log(i + ' ' + card.id)
       card.stateOfAuction = StateOfAuction.CLOSED;
       this.closeAuction(card);
     }
   }
 
-  closeAuction(auction: ModeAuction){
+  closeAuction(auction: ModeAuction) {
     console.log(auction.id);
-    this.closeAuctionService.getCloseAuction(auction.id, '/user/closeAuction/'+auction.id)
+    this.closeAuctionService.getCloseAuction(auction.id, '/user/closeAuction/' + auction.id)
       .subscribe((data: boolean) => {
         this.success = data;
         console.log(this.success);
@@ -123,7 +123,7 @@ export class CardComponent implements OnInit {
       });
   }
 
-  setDataOffer(c: ModeAuction){
+  setDataOffer(c: ModeAuction) {
     localStorage.setItem('bid', JSON.stringify(c));
   }
 }
