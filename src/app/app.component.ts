@@ -70,7 +70,7 @@ export class AppComponent implements OnInit {
 
   logoutFunction() {
     alert('Utente disconnesso!');
-    localStorage.clear();
+    localStorage.removeItem('login');
     this.user = null;
     this.profile = 'Profile';
     this.router.navigate(['/index']);

@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   /*rispostaDTO = new RispostaDTO();*/
   error = true;
   url = '';
+  animation = true;
 
   constructor(private  route: ActivatedRoute, private notification: NotificationService,
               private sendDataApi: SignupApiService, private router: Router) {
@@ -70,6 +71,7 @@ export class LoginComponent implements OnInit {
     // this.sendDataApi.login(this.rispostaDTO, '/user/login').subscribe(data => {
     //   alert('Login avvenuto con successo!' + JSON.stringify(data));
       this.notification.send(this.user);
+      localStorage.setItem('login', JSON.stringify(data));
       // this.notification.send(this.rispostaDTO);
       this.router.navigate([this.url]);
     }, error => {
