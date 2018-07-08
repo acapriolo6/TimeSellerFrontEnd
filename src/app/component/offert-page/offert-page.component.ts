@@ -72,11 +72,13 @@ export class OffertPageComponent implements OnInit {
           this.correct = true;*/
           alert(data);
           this.auction.bidder.push(this.bid);
+          this.bid = new Bid();
         }, (error: Error) => {
           this.sendRequest = false;
           this.errorMessage = error.message;
 
           this.auction.bidder.push(this.bid);
+          this.bid = new Bid();
 
         });
       } else {
