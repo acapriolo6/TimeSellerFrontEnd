@@ -64,7 +64,7 @@ export class OffertPageComponent implements OnInit {
         this.bid.buyer = JSON.parse(localStorage.getItem('login'));
         this.bid.offerDate = new Date(Date.now());
         this.sendRequest = true;
-        this.sendDataApi.addElement(this.bid, '/bid/insert' + '?auctionId=' + this.auction.id + '').subscribe((data: Boolean) => {
+        this.sendDataApi.addElement(this.bid, '/user/bid/insert' + '?auctionId=' + this.auction.id + '').subscribe((data: Boolean) => {
           /*alert('Inserimento avvenuto con successo! Start: '
           + this.auction.countDownTimeStart + 'End: ' + this.auction.countDownTimeEnd);*/
           /*this.prova();
