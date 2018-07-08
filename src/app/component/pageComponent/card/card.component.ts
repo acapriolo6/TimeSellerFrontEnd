@@ -1,15 +1,6 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Banner} from '../../../interface/banner';
-import {ApiService} from '../../../service/api.service';
-import {Router} from '@angular/router';
-import {DataService} from '../../../service/store.service';
-import {ModeAuction} from '../../../class/ModeAuction';
-import {timer} from 'rxjs/internal/observable/timer';
-import { interval } from 'rxjs';
-import {map, pluck, take, timeInterval} from 'rxjs/operators';
 import {CountdownComponent} from 'ngx-countdown';
-import {forEach} from '@angular/router/src/utils/collection';
-import Timer = NodeJS.Timer;
 const moment = require('moment');
 
 @Component({
@@ -24,11 +15,9 @@ export class CardComponent implements OnInit {
   /*get data():ModeAuction {
     return this.dataService.serviceData;
   }
-
   set data(value: ModeAuction) {
     this.dataService.serviceData = value;
   }*!/
-
   countDown = this.listaBanner[0].countDownTimeEnd.getTime();
   count = 60; //6s
   startCountdownTimer() {
@@ -37,11 +26,8 @@ export class CardComponent implements OnInit {
       map(()=> --this.count)
     );
   }
-
   constructor() {
   }
-
-
   ngOnInit() {
   }
 }*/
@@ -106,8 +92,12 @@ export class CardComponent implements OnInit {
       i++;
     });
     setInterval( () => {
-      console.log('ehi');
       this.countDown();
     }, 1000);
+  }
+
+  disableBtn(i: number) {
+    console.log('asta chiusa. Bid '+i);
+    document.getElementById("btnbid"+i).setAttribute("disabled", "disabled");
   }
 }
