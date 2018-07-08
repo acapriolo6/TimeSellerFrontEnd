@@ -1,6 +1,10 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Banner} from '../../../interface/banner';
 import {CountdownComponent} from 'ngx-countdown';
+import {ModeAuction, StateOfAuction} from "../../../class/ModeAuction";
+import {environment} from "../../../../environments/environment";
+import {CloseauctionService} from "../../../service/closeauction.service";
+import {isBoolean} from "util";
 const moment = require('moment');
 
 @Component({
@@ -11,7 +15,7 @@ const moment = require('moment');
 export class CardComponent implements OnInit {
 
   @Input() listaBanner: Banner[];
-
+  success = false;
   /*get data():ModeAuction {
     return this.dataService.serviceData;
   }
@@ -41,7 +45,7 @@ export class CardComponent implements OnInit {
     this.counter.stop();
   }
 
-  constructor() {
+  constructor(private closeAuctionService: CloseauctionService) {
   }
 
 
@@ -96,8 +100,30 @@ export class CardComponent implements OnInit {
     }, 1000);
   }
 
-  disableBtn(i: number) {
-    console.log('asta chiusa. Bid '+i);
-    document.getElementById("btnbid"+i).setAttribute("disabled", "disabled");
+  disableBtn(i: number, card: ModeAuction) {
+    // console.log('asta chiusa. Bid '+i);
+    if (card.stateOfAuction != StateOfAuction.CLOSED) {
+      document.getElementById("btnbid" + i).setAttribute("disabled", "disabled");
+      // console.log(i + ' ' + card.id)
+      card.stateOfAuction = StateOfAuction.CLOSED;
+      this.closeAuction(card);
+    }
+  }
+
+  closeAuction(auction: ModeAuction){
+    console.log(auction.id);
+    this.closeAuctionService.getCloseAuction(auction.id, '/user/closeAuction/'+auction.id)
+      .subscribe((data: boolean) => {
+        this.success = data;
+        console.log(this.success);
+      },
+      (data: Error) => {
+        // alert('Error: '.concat(data.message));
+        console.log('Error while setting closed auction: '.concat(data.message));
+      });
+  }
+
+  setDataOffer(c: ModeAuction){
+    localStorage.setItem('bid', JSON.stringify(c));
   }
 }

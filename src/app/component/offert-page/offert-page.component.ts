@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
 import {ModeAuction} from "../../class/ModeAuction";
 
 @Component({
@@ -10,11 +9,12 @@ import {ModeAuction} from "../../class/ModeAuction";
 export class OffertPageComponent implements OnInit {
   bid: ModeAuction;
 
-  constructor(private  route: ActivatedRoute) {
-    this.bid = this.route.snapshot.params['bid'];
+  constructor() {
   }
 
   ngOnInit() {
+    this.bid = JSON.parse(localStorage.getItem('bid'));
+    console.log(this.bid.startPrice);
   }
 
 }
