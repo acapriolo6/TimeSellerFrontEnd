@@ -1,6 +1,15 @@
 /* GLOBAL STYLES
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
+.mtx-bg-img{
+  /*background-image: url("../img/new_2.jpeg");*/
+  background-color: beige;
+  opacity: 0.8;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
 
 html{
   height:100%;
@@ -66,7 +75,7 @@ img{
 .carousel {
   margin-bottom: 4rem;
   background-color: transparent;
-  border-radius: 25%;
+  /*border-radius: 25%;*/
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
@@ -118,7 +127,8 @@ img{
   margin-left: .75rem;
 }
 .mtx-bg-blu{
-  background-color: #3366cc;
+  /*background-color: #3366cc;*/
+  background-color: grey;
 }
 .mtx-white{
   color: white;
