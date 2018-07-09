@@ -81,8 +81,8 @@ export class OffertPageComponent implements OnInit {
       localStorage.setItem('bid', JSON.stringify(this.auction));
       localStorage.setItem('offert', JSON.stringify(this.bid));
     } else {
-      console.log(this.bid.price);
       if (this.bid.price > this.lastOffer()) {
+        this.errorMessage = null;
         this.bid.buyer = JSON.parse(localStorage.getItem('login'));
         this.bid.offerDate = new Date(Date.now());
         this.sendRequest = true;
