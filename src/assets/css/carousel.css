@@ -70,7 +70,7 @@ img{
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
-  bottom: 3rem;
+  bottom: 1rem;
   z-index: 10;
   background-color: white;
   background: linear-gradient(to right, rgba(255,0,0,0), white, white , rgba(255,0,0,0));
