@@ -9,18 +9,14 @@
             <img class="rounded-circle" [src]="'../../../../assets/img/card'+i%3+'.jpg'" alt="Card image cap">
           </div>
           <div class="card-body col-6 col-sm-7 col-md-6 col-lg-7">
-            <div class="h-100 w-100" style="position: absolute; opacity: 1;background-color:red;">
-
-            </div>
-            <div class="w-100 h-100" style="position: absolute;">
-
-              <h5 class="card-title">{{card.title}} </h5>
-              <p class="card-text">Base asta: {{card.startPrice}} €</p>
-              <p class="card-text">Scade il: {{card.countDownTimeEnd | date :"dd/MM/yyyy HH:mm"}}</p>
-              <p class="card-text" *ngIf="card.bidder.length > 0">Ultima offerta: {{lastOffer(card)}} €</p>
-              <p><countdown-timer (zeroTrigger)="disableBtn(i, card)" [end]="dateOfEnd(card) | date : 'yyyy-MM-dd HH:mm'"></countdown-timer></p>
-              <input type="button" (click)="setDataOffer(card)" id="btnbid{{i}}" routerLink='/offers/bid' value="Bids" class="btn btn-primary">
-            </div>
+            <h5 class="card-title">{{card.title}} </h5>
+            <p class="card-text">Base asta:<br><label class="h5">{{card.startPrice}} €</label></p>
+            <p class="card-text">Scade il:<br>
+              <label class="h5">{{card.countDownTimeEnd | date :"dd/MM/yyyy HH:mm"}}</label></p>
+            <p class="card-text" *ngIf="card.bidder.length > 0">Ultima offerta: <br><label class="h5">{{lastOffer(card)}} €</label></p>
+            <p class="card-text" *ngIf="card.bidder.length == 0">&nbsp;</p>
+            <p class="h4 text-danger"><countdown-timer (zeroTrigger)="disableBtn(i, card)" [end]="dateOfEnd(card) | date : 'yyyy-MM-dd HH:mm'"></countdown-timer></p>
+            <input type="button" (click)="setDataOffer(card)" id="btnbid{{i}}" routerLink='/offers/bid' value="Bids" class="btn btn-primary">
           </div>
         </div>
       </div>
