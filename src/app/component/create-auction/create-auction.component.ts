@@ -39,6 +39,7 @@ export class CreateAuctionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.auction.location = null;
     this.registerForm = this.formBuilder.group({
       title: ['', Validators.required],
       description: [''],

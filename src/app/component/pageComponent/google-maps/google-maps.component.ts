@@ -14,6 +14,7 @@ export class GoogleMapsComponent implements OnInit {
   @Output() positionSend = new EventEmitter<Address>();
 
   locationError = true;
+  load = true;
   constructor() { }
 
   ngOnInit() {
@@ -30,8 +31,10 @@ export class GoogleMapsComponent implements OnInit {
         const geocoder = new google.maps.Geocoder;
         const infowindow = new google.maps.InfoWindow;
         this.geocodeLatLng(geocoder, this.map, infowindow, mapProp);
-        console.log('mappa creata');
+        this.load = false;
+        console.log('Boh1: ' + this.load);
       }, error1 => {
+        console.log('Boh2: ' + this.load);
         this.locationError = true;
       });
     } else {
