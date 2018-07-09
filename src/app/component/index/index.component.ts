@@ -3,6 +3,7 @@ import {ApiService} from '../../service/api.service';
 import {Banner} from '../../interface/banner';
 import {Customer} from '../../class/Customer';
 import {AppComponent} from '../../app.component';
+import {ModeAuction} from '../../class/ModeAuction';
 
 @Component({
   selector: 'app-index',
@@ -15,15 +16,18 @@ export class IndexComponent implements OnInit {
   user: Customer;
   @Output()
   authorClick: EventEmitter<Customer> = new EventEmitter<Customer>();
-  listaBanner: Banner[];
+  listaBanner: ModeAuction[];
   animation = true;
   @Input() auctionLink: string;
 
   constructor(private apiService: ApiService) { }
 
   getBanner() {
-    this.apiService.getBanner().subscribe((data: Banner[]) => {
+    this.apiService.getBanner().subscribe((data: ModeAuction[]) => {
         this.listaBanner = data;
+        this.listaBanner.forEach(function (element) {
+          console.log('bids: ' + element.bidder.length);
+        });
         this.animation = false;
       },
       (error: any) => {

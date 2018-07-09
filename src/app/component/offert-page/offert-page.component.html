@@ -24,7 +24,7 @@
               <br>
               <br>
               <input type="number" [(ngModel)]="bid.price" name="bidButton" [disabled]="sendRequest">
-              <button type="submit" class="btn btn-dark btn-sm" (click)="makeBid()" [disabled]="sendRequest">FAI OFFERTA</button>
+              <button id="buttonBid" type="submit" class="btn btn-dark btn-sm" (click)="makeBid()" [disabled]="sendRequest">FAI OFFERTA</button>
               <div class="container-fluid" *ngIf="errorMessage !== null">
                 <div class="justify-content-center alert alert-danger" >
                   <button type="button" class="close" data-dismiss="alert" (click)="errorMessage = null">&times;</button>

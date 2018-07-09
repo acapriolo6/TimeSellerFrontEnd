@@ -17,7 +17,7 @@ export class OffertPageComponent implements OnInit {
   sendRequest = false;
 
   dateOfEnd() {
-    return this.auction.bidder.length > 0 ? this.auction.bidder[this.auction.bidder.length - 1].offerDate : this.auction.countDownTimeEnd;
+    return this.auction.bidder.length > 0 ? this.auction.bidder[this.auction.bidder.length - 1].offerDateEnd : this.auction.countDownTimeEnd;
   }
 
   lastOffer() {
@@ -29,13 +29,14 @@ export class OffertPageComponent implements OnInit {
 
   ngOnInit() {
     this.auction = JSON.parse(localStorage.getItem('bid'));
-    console.log(this.auction.startPrice);
+    /*localStorage.removeItem('bid');*/
+    /*console.log(this.auction.bidder.length);*/
   }
 
   disableBtn(i: number, card: ModeAuction) {
     // console.log('asta chiusa. Bid '+i);
     if (card.stateOfAuction !== StateOfAuction.CLOSED) {
-      document.getElementById('btnbid' + i).setAttribute('disabled', 'disabled');
+      document.getElementById('buttonBid').setAttribute('disabled', 'disabled');
       // console.log(i + ' ' + card.id)
       card.stateOfAuction = StateOfAuction.CLOSED;
       this.closeAuction(card);
@@ -64,21 +65,28 @@ export class OffertPageComponent implements OnInit {
         this.bid.buyer = JSON.parse(localStorage.getItem('login'));
         this.bid.offerDate = new Date(Date.now());
         this.sendRequest = true;
-        this.sendDataApi.addElement(this.bid, '/user/bid/insert' + '?auctionId=' + this.auction.id + '').subscribe((data: Boolean) => {
+        this.sendDataApi.addElement(this.bid, '/user/insert' + '?auctionId=' + this.auction.id + '').subscribe((data: Boolean) => {
           /*alert('Inserimento avvenuto con successo! Start: '
           + this.auction.countDownTimeStart + 'End: ' + this.auction.countDownTimeEnd);*/
           /*this.prova();
           this.commit = false;
           this.correct = true;*/
-          alert(data);
-          this.auction.bidder.push(this.bid);
-          this.bid = new Bid();
+          /*alert(data);*/
+          this.sendRequest = false;
+          if (data) {
+            const time = new Date(Date.now());
+            const addMinutes = 3 * 60000;
+            this.bid.offerDateEnd = new Date(time.getTime() + addMinutes);
+            console.log('Orario attuale: ' + time + ' orario futuro: ' + this.bid.offerDateEnd);
+            this.auction.bidder.push(this.bid);
+            this.bid = new Bid();
+          } else {
+            this.errorMessage = 'Errore inserimento... Riprovare';
+          }
         }, (error: Error) => {
           this.sendRequest = false;
           this.errorMessage = error.message;
 
-          this.auction.bidder.push(this.bid);
-          this.bid = new Bid();
 
         });
       } else {

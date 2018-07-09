@@ -14,7 +14,7 @@ const moment = require('moment');
 })
 export class CardComponent implements OnInit {
 
-  @Input() listaBanner: Banner[];
+  @Input() listaBanner: ModeAuction[];
   success = false;
   /*get data():ModeAuction {
     return this.dataService.serviceData;
@@ -72,7 +72,7 @@ export class CardComponent implements OnInit {
       const h = duration.asSeconds();
       const m = duration.minutes();
       const s = duration.seconds();
-      card.countDown = ' ' + h + ':' + m + ':' + s;
+      /*card.countDown = ' ' + h + ':' + m + ':' + s;*/
       // card.countDown = x - y;
     });
 
@@ -89,12 +89,7 @@ export class CardComponent implements OnInit {
   }*/
 
   ngOnInit() {
-    let i = 100;
-    this.listaBanner.forEach(card => {
-      card.countDown = '';
-      /*card.countDown = i;*/
-      i++;
-    });
+    this.countDown();
     setInterval( () => {
       this.countDown();
     }, 1000);
