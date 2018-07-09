@@ -16,6 +16,7 @@ export class CardComponent implements OnInit {
 
   @Input() listaBanner: ModeAuction[];
   success = false;
+
   /*get data():ModeAuction {
     return this.dataService.serviceData;
   }
@@ -35,6 +36,25 @@ export class CardComponent implements OnInit {
   ngOnInit() {
   }
 }*/
+
+  lastOffer(auction) {
+    return auction.bidder.length > 0 ? auction.bidder[auction.bidder.length - 1].price : auction.startPrice;
+  }
+
+  dateOfEnd(auction) {
+    /*var time = this.auction.bidder.length > 0 ? this.auction.bidder[this.auction.bidder.length - 1].offerDate
+                                                : null;*/
+    let finalTime: Date;
+    if (auction.bidder.length > 0 ) {
+      const timeEnd = 3 * 60000;
+      const time = new Date(auction.bidder[auction.bidder.length - 1].offerDate);
+      finalTime = new Date(time.getTime() + timeEnd);
+    } else {
+      finalTime = auction.countDownTimeEnd;
+    }
+    return finalTime;
+  }
+
   @ViewChild(CountdownComponent) counter: CountdownComponent;
 
   onStart() {
@@ -55,44 +75,8 @@ export class CardComponent implements OnInit {
     // document.getElementById("txt" + i).innerHTML =;
   }
 
-  countDown() {
-
-    /*this.listaBanner.forEach(card => {
-      // Date.parse(Date.now())
-      // console.log(new Date(card.countDownTimeEnd.getTime() - Date.now()).getHours());
-      const end_date = moment(card.countDownTimeEnd, 'YYYY-MM-DD HH:mm:ss');
-      const start_date = moment(new Date(Date.now()), 'YYYY-MM-DD HH:mm:ss');
-      const duration = moment.duration(end_date.diff(start_date));
-      console.log(moment);
-
-      /*const h = parseInt( (duration.asSeconds() / 3600).toString(), 10);
-      const m = parseInt( (duration.minutes() / 60).toString(), 10);
-      const s = parseInt( (duration.seconds()).toString(), 10);*/
-
-      /*const h = duration.asSeconds();
-      const m = duration.minutes();
-      const s = duration.seconds();
-      /*card.countDown = ' ' + h + ':' + m + ':' + s;*/
-      // card.countDown = x - y;
-    /*});*/
-
-  }
-
-  /*ngOnInit() {
-    var i = 0;
-    this.listaBanner.forEach(card => {
-      /!*card.countDown = card.countDownTimeEnd;*!/
-      card.countDown = i;
-      i++;
-    });
-    setInterval(this.countDown,1000);
-  }*/
 
   ngOnInit() {
-    /*this.countDown();
-    setInterval( () => {
-      this.countDown();
-    }, 1000);*/
   }
 
   disableBtn(i: number, card: ModeAuction) {
