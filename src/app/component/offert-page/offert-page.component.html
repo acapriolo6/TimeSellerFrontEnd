@@ -5,29 +5,33 @@
         <div class="card-sm mh-75" style="background-color:#9999e6; opacity: 0.85">
           <div class="card-body">
             <form class="form-group">
+              <label><strong>Inizio tempo asta:</strong></label>
+              <h3 class="text-danger">{{auction.countDownTimeStart | date : 'HH:mm dd/MM/yyyy'}}</h3>
+              <label><strong>Fine tempo asta:</strong></label>
+              <h3 class="text-danger">{{auction.countDownTimeEnd | date : 'HH:mm dd/MM/yyyy'}}</h3>
               <label><strong>Tempo allo scadere dell' asta:  </strong></label>
-              <countdown-timer class="h1 " (zeroTrigger)="disableBtn(auction)" [end]="auction.countDownTimeEnd | date : 'yyyy-MM-dd HH:mm:ss'"></countdown-timer>
+              <countdown-timer class="h2" (zeroTrigger)="disableBtn(auction)" [end]="dateOfEnd() | date : 'yyyy-MM-dd HH:mm:ss'"></countdown-timer>
               <br>
               <label><strong>Prezzo di partenza:</strong></label>
               <h3>{{auction.startPrice}} €</h3>
               <br>
               <div class="w-100" *ngIf="auction.bidder.length > 0">
-                <!--<label><strong>Ultima offerta:  </strong></label>
-                <div id="provaPippo">
-
-                </div>
-                <countdown-timer class="h1 " (zeroTrigger)="disableBtn(auction)" [end]="dateOfEnd() | date : 'yyyy-MM-dd HH:mm:ss'"></countdown-timer>-->
                 <br>
                 <label><strong>Prezzo ultima offerta:</strong></label>
                 <h3>{{lastOffer()}} €</h3>
               </div>
-              <div class="w-100" *ngIf="auction.bidder.length == 0">
+              <div class="w-100" *ngIf="auction.bidder.length == 0 && auction.stateOfAuction != stateClosed">
                 <h4>Nessuna offerta! Fai la tua!</h4>
               </div>
               <br>
               <br>
-              <input type="number" [(ngModel)]="bid.price" name="bidButton" [disabled]="sendRequest">
-              <button id="buttonBid" type="submit" class="btn btn-dark btn-sm" (click)="makeBid()" [disabled]="sendRequest">FAI OFFERTA</button>
+              <div class="container-fluid" *ngIf="!sendRequest && auction.stateOfAuction != stateClosed">
+                <input type="number" [(ngModel)]="bid.price" name="bidButton" [disabled]="sendRequest">
+                <button id="buttonBid" type="submit" class="btn btn-dark btn-sm" (click)="makeBid()" [disabled]="sendRequest">FAI OFFERTA</button>
+              </div>
+              <div class="container-fluid h-25 w-25" *ngIf="sendRequest">
+                <app-loading-animation></app-loading-animation>
+              </div>
               <div class="container-fluid" *ngIf="errorMessage !== null">
                 <div class="justify-content-center alert alert-danger" >
                   <button type="button" class="close" data-dismiss="alert" (click)="errorMessage = null">&times;</button>

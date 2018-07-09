@@ -15,16 +15,20 @@ export class OffertPageComponent implements OnInit {
   bid: Bid = new Bid();
   errorMessage: String = null;
   sendRequest = false;
+  stateClosed = StateOfAuction.CLOSED;
 
   dateOfEnd() {
-    var time = this.auction.bidder.length > 0 ? this.auction.bidder[this.auction.bidder.length - 1].offerDateEnd
-                                                : this.auction.countDownTimeEnd;
-    const date = new Date(Date.now());
-    if (time == null || date.getTime() > time.getTime()) {
+    /*var time = this.auction.bidder.length > 0 ? this.auction.bidder[this.auction.bidder.length - 1].offerDate
+                                                : null;*/
+    var finalTime: Date;
+    if (this.auction.bidder.length > 0 ) {
       const timeEnd = 3 * 60000;
-      time = new Date(date.getTime() + timeEnd);
+      const time = new Date(this.auction.bidder[this.auction.bidder.length - 1].offerDate);
+      finalTime = new Date(time.getTime() + timeEnd);
+    } else {
+      finalTime = this.auction.countDownTimeEnd;
     }
-    return time;
+    return finalTime;
   }
 
   lastOffer() {
@@ -82,8 +86,6 @@ export class OffertPageComponent implements OnInit {
           this.sendRequest = false;
           if (data) {
             const time = new Date(Date.now());
-            const addMinutes = 3 * 60000;
-            this.bid.offerDateEnd = new Date(time.getTime() + addMinutes);
             this.auction.bidder.push(this.bid);
             this.bid = new Bid();
             this.sendRequest = false;

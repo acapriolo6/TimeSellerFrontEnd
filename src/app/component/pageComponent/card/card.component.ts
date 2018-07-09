@@ -57,7 +57,7 @@ export class CardComponent implements OnInit {
 
   countDown() {
 
-    this.listaBanner.forEach(card => {
+    /*this.listaBanner.forEach(card => {
       // Date.parse(Date.now())
       // console.log(new Date(card.countDownTimeEnd.getTime() - Date.now()).getHours());
       const end_date = moment(card.countDownTimeEnd, 'YYYY-MM-DD HH:mm:ss');
@@ -69,12 +69,12 @@ export class CardComponent implements OnInit {
       const m = parseInt( (duration.minutes() / 60).toString(), 10);
       const s = parseInt( (duration.seconds()).toString(), 10);*/
 
-      const h = duration.asSeconds();
+      /*const h = duration.asSeconds();
       const m = duration.minutes();
       const s = duration.seconds();
       /*card.countDown = ' ' + h + ':' + m + ':' + s;*/
       // card.countDown = x - y;
-    });
+    /*});*/
 
   }
 
@@ -89,10 +89,10 @@ export class CardComponent implements OnInit {
   }*/
 
   ngOnInit() {
-    this.countDown();
+    /*this.countDown();
     setInterval( () => {
       this.countDown();
-    }, 1000);
+    }, 1000);*/
   }
 
   disableBtn(i: number, card: ModeAuction) {
