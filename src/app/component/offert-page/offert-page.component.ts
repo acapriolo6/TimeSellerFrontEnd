@@ -17,7 +17,14 @@ export class OffertPageComponent implements OnInit {
   sendRequest = false;
 
   dateOfEnd() {
-    return this.auction.bidder.length > 0 ? this.auction.bidder[this.auction.bidder.length - 1].offerDateEnd : this.auction.countDownTimeEnd;
+    var time = this.auction.bidder.length > 0 ? this.auction.bidder[this.auction.bidder.length - 1].offerDateEnd
+                                                : this.auction.countDownTimeEnd;
+    const date = new Date(Date.now());
+    if (time == null || date.getTime() > time.getTime()) {
+      const timeEnd = 3 * 60000;
+      time = new Date(date.getTime() + timeEnd);
+    }
+    return time;
   }
 
   lastOffer() {
@@ -33,7 +40,7 @@ export class OffertPageComponent implements OnInit {
     /*console.log(this.auction.bidder.length);*/
   }
 
-  disableBtn(i: number, card: ModeAuction) {
+  disableBtn(card: ModeAuction) {
     // console.log('asta chiusa. Bid '+i);
     if (card.stateOfAuction !== StateOfAuction.CLOSED) {
       document.getElementById('buttonBid').setAttribute('disabled', 'disabled');
@@ -77,9 +84,9 @@ export class OffertPageComponent implements OnInit {
             const time = new Date(Date.now());
             const addMinutes = 3 * 60000;
             this.bid.offerDateEnd = new Date(time.getTime() + addMinutes);
-            console.log('Orario attuale: ' + time + ' orario futuro: ' + this.bid.offerDateEnd);
             this.auction.bidder.push(this.bid);
             this.bid = new Bid();
+            this.sendRequest = false;
           } else {
             this.errorMessage = 'Errore inserimento... Riprovare';
           }

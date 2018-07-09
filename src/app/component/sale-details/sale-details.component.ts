@@ -42,6 +42,9 @@ export class SaleDetailsComponent implements OnInit {
     /*alert(this.c.username);*/
     this.api.getAuctionProva(this.c.username).subscribe((data: ModeAuction[]) => {
         this.listaAste = data;
+        this.listaAste.forEach(value => {
+          value.price = (value.bidder.length > 0) ? value.bidder[value.bidder.length - 1].price : 0;
+        });
       },
       (data: Error) => {
         alert(data.message);
