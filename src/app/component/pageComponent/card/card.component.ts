@@ -85,6 +85,7 @@ export class CardComponent implements OnInit {
       document.getElementById('btnbid' + i).setAttribute('disabled', 'disabled');
       // console.log(i + ' ' + card.id)
       card.stateOfAuction = StateOfAuction.CLOSED;
+      this.listaBanner.splice(i, 1);
       this.closeAuction(card);
     }
   }

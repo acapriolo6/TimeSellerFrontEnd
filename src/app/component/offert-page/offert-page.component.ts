@@ -20,7 +20,7 @@ export class OffertPageComponent implements OnInit {
   dateOfEnd() {
     /*var time = this.auction.bidder.length > 0 ? this.auction.bidder[this.auction.bidder.length - 1].offerDate
                                                 : null;*/
-    var finalTime: Date;
+    let finalTime: Date;
     if (this.auction.bidder.length > 0 ) {
       const timeEnd = 3 * 60000;
       const time = new Date(this.auction.bidder[this.auction.bidder.length - 1].offerDate);
@@ -39,8 +39,16 @@ export class OffertPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.auction = JSON.parse(localStorage.getItem('bid'));
-    /*localStorage.removeItem('bid');*/
+    if (localStorage.getItem('bid')) {
+      this.auction = JSON.parse(localStorage.getItem('bid'));
+    } else {
+      this.router.navigate(['/index']);
+    }
+    if (localStorage.getItem('offert')) {
+      this.bid = JSON.parse(localStorage.getItem('offert'));
+    }
+    localStorage.removeItem('bid');
+    localStorage.removeItem('offert');
     /*console.log(this.auction.bidder.length);*/
   }
 
@@ -70,6 +78,8 @@ export class OffertPageComponent implements OnInit {
     if (!localStorage.getItem('login')) {
       this.router.navigate(['/login']);
       localStorage.setItem('nextPage', this.router.routerState.snapshot.url);
+      localStorage.setItem('bid', JSON.stringify(this.auction));
+      localStorage.setItem('offert', JSON.stringify(this.bid));
     } else {
       console.log(this.bid.price);
       if (this.bid.price > this.lastOffer()) {
