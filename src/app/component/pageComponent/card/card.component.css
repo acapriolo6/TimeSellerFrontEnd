@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.cardOpacity{
+  opacity: 0.9;
+}
+
 .col-lg-4{
   margin-bottom: 0;
 }
