@@ -45,13 +45,13 @@ export class SignupApiService {
 
   login(element: any, url: string) {
     return this.httpClient.post(environment.baseServiceUrl + url, element, httpOptions);
-
-    /*return this.httpClient.post<Customer>(this.serviceSaveUserUrl, user, httpOptions);*/
   }
 
-  postRequestWithParameters(element: any, url: string, option: HttpHeaders) {
-    return this.httpClient.post(environment.baseServiceUrl + url, element, {
-      headers: option
-    });
+  postRequest(element: any, url: string) {
+    return this.httpClient.post(environment.baseServiceUrl + url, element, httpOptions);
+  }
+
+  getRequest(url: string) {
+    return this.httpClient.get(environment.baseServiceUrl + url);
   }
 }

@@ -4,6 +4,7 @@ import {CloseauctionService} from '../../service/closeauction.service';
 import {Bid} from '../../class/bid';
 import {Router} from '@angular/router';
 import {SignupApiService} from '../../service/signup-api.service';
+import Timer = NodeJS.Timer;
 
 @Component({
   selector: 'app-offert-page',
@@ -16,6 +17,7 @@ export class OffertPageComponent implements OnInit {
   errorMessage: String = null;
   sendRequest = false;
   stateClosed = StateOfAuction.CLOSED;
+  newInfo: Timer;
 
   dateOfEnd() {
     /*var time = this.auction.bidder.length > 0 ? this.auction.bidder[this.auction.bidder.length - 1].offerDate
@@ -50,6 +52,24 @@ export class OffertPageComponent implements OnInit {
     localStorage.removeItem('bid');
     localStorage.removeItem('offert');
     /*console.log(this.auction.bidder.length);*/
+    this.newInfo = setInterval(args => this.provaThread(), 1500);
+  }
+
+  provaThread() {
+    clearInterval(this.newInfo);
+    this.sendDataApi.getRequest('/bid/getNewBid/' + this.auction.id).subscribe( (data: Bid[]) => {
+      if (data.length !== 0) {
+        if (this.auction.bidder.length > 0 && this.auction.bidder[this.auction.bidder.length - 1].price < data[0].price) {
+          this.auction.bidder.push(data[0]);
+          alert('Nuova offerta');
+        }
+      }
+      /*alert('ok');*/
+      this.newInfo = setInterval(args => this.provaThread(), 1000);
+    }, (error1: Error) => {
+      console.log(error1.message);
+      this.newInfo = setInterval(args => this.provaThread(), 10000);
+    });
   }
 
   disableBtn(card: ModeAuction) {

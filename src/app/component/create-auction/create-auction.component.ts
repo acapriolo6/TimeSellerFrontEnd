@@ -70,7 +70,6 @@ export class CreateAuctionComponent implements OnInit {
 
     this.submitted = true;
     // stop here if form is invalid
-    console.log( this.auction.startPrice);
     if (this.registerForm.invalid || this.auction.location == null) {
       return;
     } else {
@@ -115,17 +114,6 @@ export class CreateAuctionComponent implements OnInit {
     setTimeout(() => {
       this.routerP.navigate(['/index']);
     }, 2000);
-  }
-
-  saveAuctionSuccess() {
-    alert('Inserimento avvenuto con successo!');
-    /*this.prova();*/
-
-  }
-
-  saveAuctionError() {
-    this.router.navigate(['/index']);
-    alert('Errore Inserimento ');
   }
 
   setStartPrice(startPrice: number) {

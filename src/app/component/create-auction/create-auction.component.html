@@ -19,6 +19,7 @@
               <div *ngIf="submitted && f.hours.errors" class="invalid-feedback">
                 <div *ngIf="f.hours.errors.required">Hour to sell is required</div>
                 <div *ngIf="f.hours.errors.pattern">Hour no set correctly (hours is a number between 0 and 23)</div>
+                <div *ngIf="submitted">prova</div>
               </div>
             </div>
             <div class="col-12 col-sm-6">
@@ -32,10 +33,10 @@
           </div>
           <div class="row justify-content-center">
             <div class="col-12 col-md-6">
-              <label>Prezzo di partenza {{auction.startPrice}}</label>
+              <label>Prezzo di partenza</label>
               <div class="row">
                 <input type="text" id="startPrice" [(ngModel)]="auction.startPrice" formControlName="startPrice"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.startPrice.errors }" (blur)="setCurrency($event)" (focus)="deleteCurrency($event)" placeholder="0€"/>
-                <div *ngIf="submitted && ((auction.startPrice == null || auction.startPrice<=0) || f.startPrice.errors.pattern)" class="invalid-feedback">
+                <div *ngIf="submitted && ((auction.startPrice == null || auction.startPrice<=0) || f.startPrice.errors)" class="invalid-feedback">
                   <div *ngIf="(auction.startPrice == null || auction.startPrice<=0)">Starting price is required</div>
                   <div *ngIf="f.startPrice.errors.pattern">Starting price not correctly entered</div>
                 </div>

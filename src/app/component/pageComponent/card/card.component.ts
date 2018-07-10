@@ -86,12 +86,13 @@ export class CardComponent implements OnInit {
       // console.log(i + ' ' + card.id)
       card.stateOfAuction = StateOfAuction.CLOSED;
       this.listaBanner.splice(i, 1);
+      /*alert(card.title + ' ' + card.seller.username);*/
       this.closeAuction(card);
     }
   }
 
   closeAuction(auction: ModeAuction) {
-    console.log(auction.id);
+    console.log('Pippo:' + auction.id);
     this.closeAuctionService.getCloseAuction(auction.id, '/user/closeAuction/' + auction.id)
       .subscribe((data: boolean) => {
         this.success = data;
