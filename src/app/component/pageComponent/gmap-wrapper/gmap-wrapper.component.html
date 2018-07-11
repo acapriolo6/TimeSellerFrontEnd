@@ -1,8 +1,8 @@
 <div class="container w-100">
-  <h1>Your Position</h1>
+  <!--<h1>Your Position</h1>
   <div class="form-group">
-    <!--<input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">-->
-  </div>
+    <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+  </div>-->
   <agm-map *ngIf="!locationError" [latitude]="latitude" [longitude]="longitude" [scrollwheel]="true" [zoom]="zoom">
     <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
   </agm-map>

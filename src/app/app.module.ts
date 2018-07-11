@@ -25,6 +25,7 @@ import { AdminPageComponent } from './component/admin-page/admin-page.component'
 import { OffertPageComponent } from './component/offert-page/offert-page.component';
 import { CountdownModule } from 'ngx-countdown';
 import {CountdownTimerModule} from 'ngx-countdown-timer';
+import { GoogleMapsStaticComponent } from './component/pageComponent/google-maps-static/google-maps-static.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {CountdownTimerModule} from 'ngx-countdown-timer';
     GoogleMapsComponent,
     LoadingAnimationComponent,
     AdminPageComponent,
-    OffertPageComponent
+    OffertPageComponent,
+    GoogleMapsStaticComponent
   ],
   imports: [
     BrowserModule,
