@@ -37,7 +37,10 @@
         <div class="col-12 text-center justify-content-center txtOpacity">
           Last 10 Auction Closed
         </div>
-        <div class="col-12">
+        <div class="col-12 justify-content-center text-center">
+          <div class="mtx-loading offset-5">
+            <app-loading-animation class="mtx-loading" *ngIf="animationClosed"></app-loading-animation>
+          </div>
           <app-card [listaBanner]="listaBannerClosed" [counDownEnable]="false" *ngIf="!animationClosed"></app-card>
         </div>
       </div>

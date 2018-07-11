@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
     }*/
     console.log('aooooooooo');
     this.url = (localStorage.getItem('nextPage') !== null) ? localStorage.getItem('nextPage')  : '/createAuction';
+    this.errorMessage = (localStorage.getItem('msg') !== null) ? localStorage.getItem('msg')  : '/createAuction';
     localStorage.removeItem('nextPage');
   }
 

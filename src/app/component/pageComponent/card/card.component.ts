@@ -19,6 +19,7 @@ export class CardComponent implements OnInit {
   @Input() listaBanner: ModeAuction[];
   @Input() counDownEnable: boolean;
   success = false;
+  stateClosed = StateOfAuction;
   @Output() auctionClose = new EventEmitter<CloseAuctionEvent>();
 
   /*get data():ModeAuction {
@@ -40,6 +41,11 @@ export class CardComponent implements OnInit {
   ngOnInit() {
   }
 }*/
+  isClosed(card) {
+    const now = new Date(Date.now());
+    const end = new Date(this.dateOfEnd(card));
+    return now.getTime() > end.getTime();
+  }
 
   lastOffer(auction) {
     return auction.bidder.length > 0 ? auction.bidder[auction.bidder.length - 1].price : auction.startPrice;
@@ -98,7 +104,7 @@ export class CardComponent implements OnInit {
   disableBtn(i: number, card: ModeAuction) {
     // console.log('asta chiusa. Bid '+i);
 
-    document.getElementById('btnbid' + i).setAttribute('disabled', 'disabled');
+    document.getElementById('btnbid' + card.id).setAttribute('disabled', 'disabled');
     if (this.counDownEnable && card.stateOfAuction !== StateOfAuction.CLOSED) {
       const c = new CloseAuctionEvent();
       c.auction = card;
@@ -108,7 +114,7 @@ export class CardComponent implements OnInit {
   }
 
 
-closeAuction(auction: ModeAuction) {
+/*closeAuction(auction: ModeAuction) {
 console.log('Pippo:' + auction.id);
 this.closeAuctionService.getCloseAuction(auction.id, '/user/closeAuction/' + auction.id)
 .subscribe((data: boolean) => {
@@ -119,7 +125,7 @@ this.closeAuctionService.getCloseAuction(auction.id, '/user/closeAuction/' + auc
   // alert('Error: '.concat(data.message));
   console.log('Error while setting closed auction: '.concat(data.message));
 });
-}
+}*/
 
   setDataOffer(c: ModeAuction) {
     localStorage.setItem('bid', JSON.stringify(c));

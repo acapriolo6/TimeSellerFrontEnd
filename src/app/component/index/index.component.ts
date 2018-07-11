@@ -5,6 +5,7 @@ import {Customer} from '../../class/Customer';
 import {AppComponent} from '../../app.component';
 import {ModeAuction, StateOfAuction} from '../../class/ModeAuction';
 import {CloseAuctionEvent} from '../../class/close-auction-event';
+import {CloseauctionService} from '../../service/closeauction.service';
 
 @Component({
   selector: 'app-index',
@@ -23,7 +24,7 @@ export class IndexComponent implements OnInit {
   animationClosed = true;
   @Input() auctionLink: string;
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private closeAuctionService: CloseauctionService ) {
   }
 
   getBanner() {
@@ -57,23 +58,20 @@ export class IndexComponent implements OnInit {
     if (event.auction.stateOfAuction !== StateOfAuction.CLOSED) {
       // console.log(i + ' ' + card.id)
       event.auction.stateOfAuction = StateOfAuction.CLOSED;
-      this.listaBannerStarted.splice(event.index, 1);
-      this.listaBannerClosed.unshift(event.auction);
 
-      this.closeAuction(event.auction);
+      this.closeAuction(event.auction, event.index);
     }
   }
 
-  closeAuction(auction: ModeAuction) {
-    /*this.closeAuctionService.getCloseAuction(auction.id, '/user/closeAuction/' + auction.id)
+  closeAuction(auction: ModeAuction, index: number) {
+    this.closeAuctionService.getCloseAuction(auction.id, '/user/closeAuction/' + auction.id)
     .subscribe((data: boolean) => {
-        this.success = data;
-        console.log(this.success);
+        this.listaBannerStarted.splice(index, 1);
+        this.listaBannerClosed.unshift(auction);
       },
       (data: Error) => {
         // alert('Error: '.concat(data.message));
         console.log('Error while setting closed auction: '.concat(data.message));
       });
-    }*/
   }
 }

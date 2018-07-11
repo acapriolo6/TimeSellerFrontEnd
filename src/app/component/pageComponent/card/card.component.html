@@ -16,7 +16,7 @@
             <p class="card-text" *ngIf="card.bidder.length > 0">Ultima offerta: <br><label class="h5">{{lastOffer(card)}} €</label></p>
             <p class="card-text" *ngIf="card.bidder.length == 0">&nbsp;</p>
             <p class="h4 text-danger"><countdown-timer (zeroTrigger)="disableBtn(i, card)" [end]="dateOfEnd(card) | date : 'yyyy-MM-dd HH:mm'"></countdown-timer></p>
-            <input type="button" (click)="setDataOffer(card)" id="btnbid{{i}}" routerLink='/offers/bid' value="Bids" class="btn btn-primary">
+            <input type="button" (click)="setDataOffer(card)" id="btnbid{{card.id}}" [disabled]="card.stateOfAuction == stateClosed.CLOSED || isClosed(card)" routerLink='/offers/bid' value="Bids" class="btn btn-primary">
           </div>
         </div>
       </div>

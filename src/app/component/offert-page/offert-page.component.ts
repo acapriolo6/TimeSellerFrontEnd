@@ -38,6 +38,11 @@ export class OffertPageComponent implements OnInit {
   }
 
   constructor(private closeAuctionService: CloseauctionService, private router: Router, private sendDataApi: SignupApiService) {
+    if (!localStorage.getItem('login')) {
+      localStorage.setItem('nextPage', this.router.routerState.snapshot.url);
+      localStorage.setItem('msg', 'You must login in if you want to bid!')
+      this.router.navigate(['/login']);
+    }
   }
 
   ngOnInit() {
