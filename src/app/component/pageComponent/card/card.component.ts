@@ -39,6 +39,7 @@ export class CardComponent implements OnInit {
   constructor() {
   }
   ngOnInit() {
+    $('#txt').text('value');
   }
 }*/
   isClosed(card) {
