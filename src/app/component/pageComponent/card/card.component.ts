@@ -1,10 +1,12 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Banner} from '../../../interface/banner';
 import {CountdownComponent} from 'ngx-countdown';
 import {ModeAuction, StateOfAuction} from '../../../class/ModeAuction';
 import {environment} from '../../../../environments/environment';
 import {CloseauctionService} from '../../../service/closeauction.service';
 import {isBoolean} from 'util';
+import {Address} from '../../../class/Address';
+import {CloseAuctionEvent} from '../../../class/close-auction-event';
 const moment = require('moment');
 
 @Component({
@@ -15,7 +17,9 @@ const moment = require('moment');
 export class CardComponent implements OnInit {
 
   @Input() listaBanner: ModeAuction[];
+  @Input() counDownEnable: boolean;
   success = false;
+  @Output() auctionClose = new EventEmitter<CloseAuctionEvent>();
 
   /*get data():ModeAuction {
     return this.dataService.serviceData;
@@ -79,30 +83,43 @@ export class CardComponent implements OnInit {
   ngOnInit() {
   }
 
-  disableBtn(i: number, card: ModeAuction) {
+  /*disableBtn(i: number, card: ModeAuction) {
     // console.log('asta chiusa. Bid '+i);
-    if (card.stateOfAuction !== StateOfAuction.CLOSED) {
+    if (this.counDownEnable && card.stateOfAuction !== StateOfAuction.CLOSED) {
       document.getElementById('btnbid' + i).setAttribute('disabled', 'disabled');
       // console.log(i + ' ' + card.id)
       card.stateOfAuction = StateOfAuction.CLOSED;
       this.listaBanner.splice(i, 1);
-      /*alert(card.title + ' ' + card.seller.username);*/
+      /*alert(card.title + ' ' + card.seller.username);
       this.closeAuction(card);
+    }
+  }*/
+
+  disableBtn(i: number, card: ModeAuction) {
+    // console.log('asta chiusa. Bid '+i);
+
+    document.getElementById('btnbid' + i).setAttribute('disabled', 'disabled');
+    if (this.counDownEnable && card.stateOfAuction !== StateOfAuction.CLOSED) {
+      const c = new CloseAuctionEvent();
+      c.auction = card;
+      c.index = i;
+      this.auctionClose.emit(c);
     }
   }
 
-  closeAuction(auction: ModeAuction) {
-    console.log('Pippo:' + auction.id);
-    this.closeAuctionService.getCloseAuction(auction.id, '/user/closeAuction/' + auction.id)
-      .subscribe((data: boolean) => {
-        this.success = data;
-        console.log(this.success);
-      },
-      (data: Error) => {
-        // alert('Error: '.concat(data.message));
-        console.log('Error while setting closed auction: '.concat(data.message));
-      });
-  }
+
+closeAuction(auction: ModeAuction) {
+console.log('Pippo:' + auction.id);
+this.closeAuctionService.getCloseAuction(auction.id, '/user/closeAuction/' + auction.id)
+.subscribe((data: boolean) => {
+  this.success = data;
+  console.log(this.success);
+},
+(data: Error) => {
+  // alert('Error: '.concat(data.message));
+  console.log('Error while setting closed auction: '.concat(data.message));
+});
+}
 
   setDataOffer(c: ModeAuction) {
     localStorage.setItem('bid', JSON.stringify(c));

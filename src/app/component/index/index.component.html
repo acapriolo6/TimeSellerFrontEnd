@@ -12,7 +12,7 @@
           <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-              <app-loading-animation class="" *ngIf="animation"></app-loading-animation>
+              <!--<app-loading-animation class="" *ngIf="animationStarted"></app-loading-animation>-->
             </div>
             <div class="col-3"></div>
           </div>
@@ -21,10 +21,26 @@
 
         </div>
       </div>
-      <app-card [listaBanner]="listaBanner" *ngIf="!animation"></app-card>
-
+      <div class="row w-100">
+        <div class="col-12 text-center justify-content-center txtOpacity">
+          20 Auction Started
+        </div>
+        <div class="col-12 justify-content-center text-center">
+          <div class="mtx-loading offset-5">
+            <app-loading-animation class="mtx-loading" *ngIf="animationStarted"></app-loading-animation>
+          </div>
+          <app-card [listaBanner]="listaBannerStarted" [counDownEnable]="true" (auctionClose)="closeAuctionStarted($event)" *ngIf="!animationStarted"></app-card>
+        </div>
+      </div>
       <hr class="featurette-divider">
-
+      <div class="row w-100">
+        <div class="col-12 text-center justify-content-center txtOpacity">
+          Last 10 Auction Closed
+        </div>
+        <div class="col-12">
+          <app-card [listaBanner]="listaBannerClosed" [counDownEnable]="false" *ngIf="!animationClosed"></app-card>
+        </div>
+      </div>
     </div>
   </div>
 </div>

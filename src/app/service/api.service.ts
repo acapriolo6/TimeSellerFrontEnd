@@ -14,8 +14,11 @@ export class ApiService {
 
   }
 
-  getBanner() {
+  getBannerStarted() {
     return this.httpClient.get( this.serviceBaseUrl + '/getAll');
+  }
+  getBannerClosed() {
+    return this.httpClient.get( this.serviceBaseUrl + '/getHomeClosed');
   }
   getBannerCallBack(callbackSucces: (data: Banner[]) => any, callBackError: (data: Banner[]) => any = () => {}) {
     return this.httpClient.get( this.serviceBaseUrl + '/getAll').subscribe(callbackSucces, callBackError);
