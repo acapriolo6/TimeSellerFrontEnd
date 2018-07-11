@@ -23,7 +23,8 @@ export class IndexComponent implements OnInit {
   animationClosed = true;
   @Input() auctionLink: string;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService) {
+  }
 
   getBanner() {
     this.apiService.getBannerStarted().subscribe((data: ModeAuction[]) => {
@@ -75,3 +76,4 @@ export class IndexComponent implements OnInit {
       });
     }*/
   }
+}
