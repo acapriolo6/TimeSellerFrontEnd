@@ -73,10 +73,9 @@
                         <label>Date of Birth:</label>
                         <input class="form-control" formControlName="dateOfBirth" type="date" [(ngModel)]="user.dateOfBirth">
                       </div>
-                      <div *ngIf="submitted && angularForm.controls['dateOfBirth'].invalid" class="alert alert-danger">
-                        <div *ngIf="angularForm.controls['dateOfBirth'].errors.required">
-                          Date is required.
-                        </div>
+                      <div *ngIf="submitted && (angularForm.controls['dateOfBirth'].invalid || !dateOfBirthValid)" class="alert alert-danger">
+                        <div *ngIf="dateOfBirthValid && angularForm.controls['dateOfBirth'].errors.required">Date is required.</div>
+                        <div *ngIf="!dateOfBirthValid">Non puoi essere nato nel {{user.dateOfBirth | date: "yyyy"}}</div>
                       </div>
                     </div>
                   </div>
@@ -221,8 +220,8 @@
             </div>
             <div class="row mt-5">
               <div class="col-12">
-                <button type="submit"
-                        class="btn btn-success btn-lg offset-5" (click)="onSubmit()">
+                <button type="submit" class="btn btn-success btn-lg offset-5" (click)="openDialog()">
+                        <!--class="btn btn-success btn-lg offset-5" (click)="onSubmit()">-->
                   Register
                 </button>
               </div>

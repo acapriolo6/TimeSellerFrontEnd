@@ -15,7 +15,6 @@ import { LoginComponent } from './component/login/login.component';
 import { CreateAuctionComponent } from './component/create-auction/create-auction.component';
 import { GMapWrapperComponent } from './component/pageComponent/gmap-wrapper/gmap-wrapper.component';
 import { AgmCoreModule } from '@agm/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { SignUpComponent } from './component/sign-up/sign-up.component';
 import { SaleDetailsComponent } from './component/sale-details/sale-details.component';
 import {CookieService} from 'ngx-cookie-service';
@@ -25,7 +24,9 @@ import { AdminPageComponent } from './component/admin-page/admin-page.component'
 import { OffertPageComponent } from './component/offert-page/offert-page.component';
 import { CountdownModule } from 'ngx-countdown';
 import {CountdownTimerModule} from 'ngx-countdown-timer';
-import { GoogleMapsStaticComponent } from './component/pageComponent/google-maps-static/google-maps-static.component';
+import {MatDialogModule} from '@angular/material';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { PrivacytermsComponent } from './component/pageComponent/privacyterms/privacyterms.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { GoogleMapsStaticComponent } from './component/pageComponent/google-maps
     LoadingAnimationComponent,
     AdminPageComponent,
     OffertPageComponent,
-    GoogleMapsStaticComponent
+    PrivacytermsComponent
   ],
   imports: [
     BrowserModule,
@@ -59,13 +60,16 @@ import { GoogleMapsStaticComponent } from './component/pageComponent/google-maps
       apiKey: 'AIzaSyCKY5Y_1R5p8W1KU-KUm2J3k43W4_eWFAk',
       libraries: ['node_modules/@agm'],
     }),
-    CountdownTimerModule.forRoot()
+    CountdownTimerModule.forRoot(),
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [
     CookieService
   ],
   bootstrap: [
-    AppComponent
+    AppComponent,
+    PrivacytermsComponent
   ]
 })
 export class AppModule { }

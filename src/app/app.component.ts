@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Customer} from './class/Customer';
 import {NavigationEnd, NavigationError, NavigationStart, Router, Event} from '@angular/router';
 import {error} from 'util';

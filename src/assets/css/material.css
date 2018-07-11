@@ -1,0 +1,9 @@
+.dark-primary-color    { background: #FBC02D; }
+.default-primary-color { background: #FFEB3B; }
+.light-primary-color   { background: #FFF9C4; }
+.text-primary-color    { color: #212121; }
+.accent-color          { background: #448AFF; }
+.primary-text-color    { color: #212121; }
+.secondary-text-color  { color: #757575; }
+.divider-color         { border-color: #BDBDBD; }
+.home-bg-image         { background-image: url("../img/new_2.jpeg")}

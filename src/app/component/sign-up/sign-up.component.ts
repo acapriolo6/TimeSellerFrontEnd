@@ -2,11 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {SignupApiService} from '../../service/signup-api.service';
 import {Customer} from '../../class/Customer';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Address} from '../../class/Address';
 import {Router} from '@angular/router';
-import {s} from '@angular/core/src/render3';
-import {HttpHeaders} from '@angular/common/http';
-import {error} from 'util';
+import {MatDialog, MatDialogConfig} from "@angular/material";
+import {PrivacytermsComponent} from "../pageComponent/privacyterms/privacyterms.component";
+/*import {DialogConfiguration} from "coo-dialog/services/models/DialogConfiguration.model";
+import {DialogSettings} from "coo-dialog/services/models/DialogSettings.model";
+import {DialogButtonPosition} from "coo-dialog/services/models/DialogButtonPosition.model";
+import {Dialog} from "coo-dialog/services/services/Dialog.service";*/
 
 @Component({
   selector: 'app-sign-up',
@@ -26,8 +28,12 @@ export class SignUpComponent implements OnInit {
   emailUsed = false;
   loading = false;
   correct = false;
+  dateOfBirthValid = false;
 
-  constructor( private signupApi: SignupApiService, private formBuilder: FormBuilder, private router: Router) {
+  /*notificationOptionLeft: DialogConfiguration
+    = new DialogConfiguration('Alert Content', new DialogSettings('Decline', 'Approve'), new DialogButtonPosition('decline-left', 'approve-left'));*/
+
+  constructor( private signupApi: SignupApiService, private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog) {
     this.createForm();
   }
 
@@ -37,6 +43,7 @@ export class SignUpComponent implements OnInit {
       surname: ['', [ Validators.required]],
       fiscalCode: ['', [ Validators.required, Validators.minLength(16),
         Validators.pattern('^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$')]],
+      // dateOfBirth: ['', [ Validators.required]],
       dateOfBirth: ['', [ Validators.required]],
       street: ['', [ Validators.required]],
       houseNumber: ['', [ Validators.required]],
@@ -65,6 +72,18 @@ export class SignUpComponent implements OnInit {
     });
   }
 
+  /*calculateFiscalCode(){
+    var person = CodiceFiscale({
+      name: 'Mario',
+      lastname: 'Rossi',
+      day: '25',
+      month: '04',
+      year: '1945',
+      isMale: true,
+      communeName: 'Milano'
+    });
+  }*/
+
   checkEmail() {
     this.signupApi.login(this.user.email, '/user/emailExists' + '?email=' + this.user.email + '')
       .subscribe((data: boolean) => {
@@ -76,7 +95,28 @@ export class SignUpComponent implements OnInit {
     });
   }
 
+  getYear(s: string){
+    let mys = s.split(" ");
+    let year = mys[3];
+    console.log('YEAR = '+year);
+    return year;
+  }
+
   onSubmit() {
+    /*console.log(this.user.dateOfBirth);
+    console.log(this.angularForm.controls['dateOfBirth'].errors.required);*/
+    let thisYear = this.getYear(new Date(Date.now()).toDateString());
+    let d = new Date(this.user.dateOfBirth);
+    let birthYear = this.getYear(d.toDateString());
+    if (thisYear > birthYear && (parseInt(birthYear) >= (parseInt(thisYear)-90))){
+      console.log(thisYear);
+      console.log(parseInt(birthYear));
+      this.dateOfBirthValid=true;
+    } else {
+      console.log(parseInt(birthYear));
+      this.dateOfBirthValid=false;
+      console.log('Non puoi essere nato nel '+birthYear);
+    }
     if ((this.angularForm.pristine || this.angularForm.invalid) ||
       (this.password2 !== this.user.password) || (this.emailUsed) || (this.usernameUsed) ) {
       this.submitted = true;
@@ -112,7 +152,23 @@ export class SignUpComponent implements OnInit {
     }, (er: Error) => {
       alert(er.message);
     });
+
   }
 
+  openDialog() {
 
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.backdropClass = '';
+    dialogConfig.height = '400px;';
+    dialogConfig.width = '600px';
+    /*dialogConfig.data = {
+      id: 1,
+      title: 'Angular For Beginners'
+    };*/
+
+    this.dialog.open(PrivacytermsComponent, dialogConfig);
+  }
 }

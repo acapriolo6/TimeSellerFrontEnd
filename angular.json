@@ -25,7 +25,8 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.css",
-              "src/assets/css/carousel.css"
+              "src/assets/css/carousel.css",
+              "src/assets/css/material.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",

@@ -1,0 +1,11 @@
+.bg-gif{
+  /*background-image: url("../../../assets/img/hourglass_texture.jpg");*/
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+}

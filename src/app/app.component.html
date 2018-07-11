@@ -7,19 +7,19 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link mtx-text-main" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link text-primary-color" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link mtx-white" routerLink={{provaRouter()}} >Auction</a>
+          <a class="nav-link text-primary-color" routerLink={{provaRouter()}} >Auction</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link mtx-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{profile}}</a>
+          <a class="nav-link text-primary-color dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{profile}}</a>
           <div class="dropdown-menu mtx-bg-blu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item mtx-white" *ngIf="user == null" routerLink="login" >Sign In</a>
+            <a class="dropdown-item text-primary-color" *ngIf="user == null" routerLink="login" >Sign In</a>
             <!--<a class="dropdown-item mtx-white" *ngIf="user == null" routerLink="admin">Admin</a>-->
-            <a class="dropdown-item mtx-white" *ngIf="user != null" routerLink="user/auction">Aste create</a>
-            <a class="dropdown-item mtx-white" *ngIf="user != null && user.username === 'admin'" routerLink="user/admin">Admin</a>
-            <a class="dropdown-item mtx-white" href="#" (click)="logoutFunction()" *ngIf="user != null">Logout</a>
+            <a class="dropdown-item text-primary-color" *ngIf="user != null" routerLink="user/auction">Aste create</a>
+            <a class="dropdown-item text-primary-color" *ngIf="user != null && user.username === 'admin'" routerLink="user/admin">Admin</a>
+            <a class="dropdown-item text-primary-color" href="#" (click)="logoutFunction()" *ngIf="user != null">Logout</a>
           </div>
         </li>
       </ul>
@@ -34,8 +34,8 @@
 <main role="main">
   <router-outlet class="w-100 h-100" (authorClick)="showAuthorFromParent($event)"></router-outlet>
 </main>
-<footer class="mtx-bg-blu mtx-white">
-  <p class="float-right "><a href="#" class="mtx-white">Back to top</a></p>
-  <p>&copy; 2017-2018 Company, Inc. &middot; <a href="#" class="mtx-white">Privacy</a> &middot; <a href="#" class="mtx-white">Terms</a></p>
+<footer class="mtx-bg-blu text-primary-color">
+  <p class="float-right "><a href="#" class="text-primary-color">Back to top</a></p>
+  <p class="text-primary-color">&copy; 2017-2018 Company, Inc. &middot; <a href="#" class="text-primary-color">Privacy</a> &middot; <a href="#" class="text-primary-color">Terms</a></p>
 </footer>
 
