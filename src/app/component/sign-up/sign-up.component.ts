@@ -161,7 +161,6 @@ export class SignUpComponent implements OnInit {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.backdropClass = '';
     dialogConfig.height = '400px;';
     dialogConfig.width = '600px';
     /*dialogConfig.data = {
