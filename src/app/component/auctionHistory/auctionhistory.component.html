@@ -1,0 +1,36 @@
+<div class="container" style="margin-top: 100px;" align="left">
+  <table border="0" cellpadding="0" cellspacing="0" style="font-size: large;">
+    <tr>
+      <td>
+        <div><a routerLink="/user/admin" class="block"> &lt; Admin Console</a></div>
+      </td></tr>
+  </table>
+  <div align="center"><h1>Auction History</h1></div>
+
+
+
+  <table border="1" bgcolor="white">
+    <tr>
+      <td>Title</td>
+      <td>Bidder</td>
+      <td>Start Time</td>
+      <td>End Time</td>
+      <td>Sale Date</td>
+      <td>State</td>
+      <td>Start Price</td>
+    </tr>
+  <!--div class="col-12 col-xs-6 col-sm-5 col-lg-3 margin-1" *ngFor="let auction of closedAuctions; let i = index;"-->
+    <tr *ngFor="let auction of closedAuctions; let i = index;">
+      <td>{{auction.title}}</td>
+      <td>{{auction.bidder}}</td>
+      <td>{{auction.countDownTimeStart}}</td>
+      <td>{{auction.countDownTimeEnd}}</td>
+      <td>{{auction.dateOfSale}}</td>
+      <td>{{auction.stateOfAuction}}</td>
+      <td>{{auction.startPrice}}</td>
+    </tr>
+    <!--/div-->
+</table>
+
+  </div><!-- end page -->
+

@@ -10,16 +10,20 @@ import {SignUpComponent} from './component/sign-up/sign-up.component';
 import {SaleDetailsComponent} from './component/sale-details/sale-details.component';
 import {AdminPageComponent} from './component/admin-page/admin-page.component';
 import {OffertPageComponent} from "./component/offert-page/offert-page.component";
+import {ConsoleAdminComponent} from './component/console-admin/console-admin.component';
+import {AuctionhistoryComponent} from './component/auctionHistory/auctionhistory.component';
 
 const routes: Routes = [
   {path: 'user/:username/:password/:age', component: UserDetailComponent},
   {path: 'user/auction', component: SaleDetailsComponent},
   {path: 'user/signup', component: SignUpComponent},
+  {path: 'user/admin', component: ConsoleAdminComponent},
+  {path: 'user/userList', component: AdminPageComponent},
+  {path: 'user/auctionHistory', component: AuctionhistoryComponent},
   {path: 'createAuction', component: CreateAuctionComponent},
   {path: 'login', component: LoginComponent},
   {path: 'index', component: IndexComponent},
   {path: 'offers/:bid', component: OffertPageComponent},
-  {path: 'user/admin', component: AdminPageComponent},
   {path: '', component: IndexComponent},
   {path: '**', component: NotFoundComponent}
 ];
